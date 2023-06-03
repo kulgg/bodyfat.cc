@@ -2,6 +2,7 @@
 
 import { Entry, Sex } from "@/lib/model";
 import { useEffect, useState } from "react";
+import HistoryEntry from "./HistoryEntry";
 
 function History() {
   const [history, setHistory] = useState<Entry[]>([]);
@@ -11,11 +12,22 @@ function History() {
       {
         created: new Date(),
         measurement: {
-          belly: 2,
+          belly: 54,
           sex: Sex.MALE,
-          height: 3,
-          neck: 2,
-          weight: 2,
+          height: 185,
+          neck: 32,
+          weight: 80.5,
+        },
+      },
+      {
+        created: new Date(),
+        measurement: {
+          sex: Sex.FEMALE,
+          height: 185,
+          weight: 60,
+          neck: 32,
+          waist: 50,
+          hip: 51,
         },
       },
     ]);
@@ -24,11 +36,7 @@ function History() {
   return (
     <div>
       {history.map((x) => (
-        <div key={x.created.toString()}>
-          {x.created.toString()}
-
-          <div>{x.measurement.sex === Sex.MALE ? "male" : "female"}</div>
-        </div>
+        <HistoryEntry entry={x} key={x.created.getUTCMilliseconds()} />
       ))}
     </div>
   );
