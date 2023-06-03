@@ -3,6 +3,16 @@
 import { Entry, Sex } from "@/lib/model";
 import { useEffect, useState } from "react";
 import HistoryEntry from "./HistoryEntry";
+import {
+  TableCaption,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+  Table,
+} from "@/components/ui/table";
+import { formatDate } from "@/lib/utils";
 
 function History() {
   const [history, setHistory] = useState<Entry[]>([]);
@@ -35,9 +45,34 @@ function History() {
 
   return (
     <div>
-      {history.map((x) => (
-        <HistoryEntry entry={x} key={x.created.getUTCMilliseconds()} />
-      ))}
+      <Table>
+        <TableCaption>Measurements History.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Date</TableHead>
+            <TableHead>BF%</TableHead>
+            <TableHead>Sex</TableHead>
+            <TableHead>Height</TableHead>
+            <TableHead>Weight</TableHead>
+            <TableHead>Neck</TableHead>
+            <TableHead>Belly</TableHead>
+            <TableHead>Waist</TableHead>
+            <TableHead>Hip</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {history.map((x, i) => (
+            <TableRow key={i}>
+              <TableCell className="whitespace-nowrap">
+                {formatDate(x.created)}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      {/* {history.map((x) => (
+        <HistoryEntry entry={x} />
+      ))} */}
     </div>
   );
 }

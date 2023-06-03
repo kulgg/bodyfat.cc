@@ -1,3 +1,11 @@
+import {
+  TableCaption,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
 import History from "./History";
 
 export default function Home() {
@@ -9,7 +17,6 @@ export default function Home() {
       <div className="my-4"></div>
       <div className="space-y-4">
         <History />
-        <div>j</div>
       </div>
     </main>
   );
