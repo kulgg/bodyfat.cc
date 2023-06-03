@@ -1,3 +1,8 @@
+export enum Sex {
+  MALE,
+  FEMALE,
+}
+
 interface GeneralMeasurement {
   height: number;
   weight: number;
@@ -5,15 +10,20 @@ interface GeneralMeasurement {
 }
 
 interface MaleMeasurement extends GeneralMeasurement {
+  sex: Sex.MALE;
   belly: number;
+  waist?: never;
+  hip?: never;
 }
 
 interface FemaleMeasurement extends GeneralMeasurement {
+  sex: Sex.FEMALE;
+  belly?: never;
   waist: number;
   hip: number;
 }
 
-interface Entry {
+export interface Entry {
   created: Date;
   measurement: MaleMeasurement | FemaleMeasurement;
 }
