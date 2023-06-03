@@ -1,9 +1,16 @@
-import Image from "next/image";
+import History from "./History";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-between p-24">
-      <h1>Body Fat Calculator</h1>
+    <main className="">
+      <h1 className="text-4xl font-semibold tracking-tighter">
+        Body Fat Calculator
+      </h1>
+      <div className="my-4"></div>
+      <div className="space-y-4">
+        <History />
+        <div>j</div>
+      </div>
     </main>
   );
 }
