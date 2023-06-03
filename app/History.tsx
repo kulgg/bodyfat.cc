@@ -12,7 +12,7 @@ import {
   TableCell,
   Table,
 } from "@/components/ui/table";
-import { formatDate } from "@/lib/utils";
+import { formatDate, getBodyfat } from "@/lib/utils";
 
 function History() {
   const [history, setHistory] = useState<Entry[]>([]);
@@ -22,11 +22,11 @@ function History() {
       {
         created: new Date(),
         measurement: {
-          belly: 54,
+          belly: 80.5,
           sex: Sex.MALE,
-          height: 185,
-          neck: 32,
-          weight: 80.5,
+          height: 188,
+          neck: 36.5,
+          weight: 90.5,
         },
       },
       {
@@ -52,12 +52,12 @@ function History() {
             <TableHead>Date</TableHead>
             <TableHead>BF%</TableHead>
             <TableHead>Sex</TableHead>
-            <TableHead>Height</TableHead>
-            <TableHead>Weight</TableHead>
-            <TableHead>Neck</TableHead>
-            <TableHead>Belly</TableHead>
-            <TableHead>Waist</TableHead>
-            <TableHead>Hip</TableHead>
+            <TableHead>Height (cm)</TableHead>
+            <TableHead>Weight (kg)</TableHead>
+            <TableHead>Neck (cm)</TableHead>
+            <TableHead>Belly (cm)</TableHead>
+            <TableHead>Waist (cm)</TableHead>
+            <TableHead>Hip (cm)</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -66,13 +66,26 @@ function History() {
               <TableCell className="whitespace-nowrap">
                 {formatDate(x.created)}
               </TableCell>
+              <TableCell>{getBodyfat(x).toFixed(2)}</TableCell>
+              <TableCell>
+                {x.measurement.sex === Sex.FEMALE ? "👩" : "👨"}
+              </TableCell>
+              <TableCell>{x.measurement.height}</TableCell>
+              <TableCell>{x.measurement.weight}</TableCell>
+              <TableCell>{x.measurement.neck}</TableCell>
+              <TableCell>
+                {x.measurement.belly ? x.measurement.belly : "-"}
+              </TableCell>
+              <TableCell>
+                {x.measurement.waist ? x.measurement.waist : "-"}
+              </TableCell>
+              <TableCell>
+                {x.measurement.hip ? x.measurement.hip : "-"}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {/* {history.map((x) => (
-        <HistoryEntry entry={x} />
-      ))} */}
     </div>
   );
 }
