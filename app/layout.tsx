@@ -1,9 +1,15 @@
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const clash = localFont({
+  src: "./ClashDisplay-Semibold.otf",
+  variable: "--font-clash",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -16,11 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={cn(
-          "bg-slate-950 text-white max-w-4xl mx-auto dark",
-          inter.className
+          "bg-slate-950 text-white max-w-4xl mx-auto dark font-default",
+          clash.variable,
+          inter.variable
         )}
       >
         {children}

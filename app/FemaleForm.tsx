@@ -71,6 +71,9 @@ export default function FemaleForm() {
     setHistory((prev) => [...prev, entry]);
 
     form.reset();
+
+    const element = document.getElementById("history");
+    element?.scrollIntoView();
   }
 
   return (
