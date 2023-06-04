@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "bg-slate-900 text-white max-w-5xl mx-auto dark",
+          "bg-slate-950 text-white max-w-5xl mx-auto dark",
           inter.className
         )}
       >

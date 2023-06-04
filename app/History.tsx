@@ -19,38 +19,10 @@ import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const historyAtom = atomWithStorage<Entry[]>("history", []);
+export const historyAtom = atomWithStorage<Entry[]>("history", []);
 
 function History() {
   const [history, setHistory] = useAtom(historyAtom);
-  // const [history, setHistory] = useState<Entry[]>([]);
-
-  useEffect(() => {
-    setHistory((x) => [
-      ...x,
-      {
-        created: new Date().toISOString(),
-        measurement: {
-          belly: 80.5,
-          sex: Sex.MALE,
-          height: 188,
-          neck: 36.5,
-          weight: 90.5,
-        },
-      },
-      {
-        created: new Date().toISOString(),
-        measurement: {
-          sex: Sex.FEMALE,
-          height: 185,
-          weight: 60,
-          neck: 32,
-          waist: 50,
-          hip: 51,
-        },
-      },
-    ]);
-  }, []);
 
   return (
     <div>

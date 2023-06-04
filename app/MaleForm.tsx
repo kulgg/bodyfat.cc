@@ -14,57 +14,127 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@radix-ui/react-label";
+import { useAtom } from "jotai";
+import { historyAtom } from "./History";
+import { Sex } from "@/lib/model";
 
 const formSchema = z.object({
-  height: z.number(),
-  weight: z.number(),
-  neck: z.number(),
-  belly: z.number(),
-  waist: z.number(),
-  hip: z.number(),
+  height: z.preprocess(
+    (args) => (args === "" ? undefined : args),
+    z.coerce
+      .number({ invalid_type_error: "Height must be a number" })
+      .positive("Height must be positive")
+  ),
+  weight: z.preprocess(
+    (args) => (args === "" ? undefined : args),
+    z.coerce
+      .number({ invalid_type_error: "Weight must be a number" })
+      .positive("Weight must be positive")
+  ),
+  neck: z.preprocess(
+    (args) => (args === "" ? undefined : args),
+    z.coerce
+      .number({ invalid_type_error: "Neck must be a number" })
+      .positive("Neck must be positive")
+  ),
+  belly: z.preprocess(
+    (args) => (args === "" ? undefined : args),
+    z.coerce
+      .number({ invalid_type_error: "Belly must be a number" })
+      .positive("Belly must be positive")
+  ),
 });
 
 export default function MaleForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {},
   });
 
-  // 2. Define a submit handler.
+  const [history, setHistory] = useAtom(historyAtom);
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    setHistory((prev) => [
+      ...prev,
+      {
+        created: new Date().toISOString(),
+        measurement: {
+          sex: Sex.MALE,
+          height: values.height,
+          weight: values.weight,
+          neck: values.neck,
+          belly: values.belly,
+        },
+      },
+    ]);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="sex"
+          name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Sex</FormLabel>
-              <FormControl></FormControl>
+              <FormLabel>Height (cm)</FormLabel>
+              <FormControl>
+                <Input placeholder="177" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="weight"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Weight (kg)</FormLabel>
+              <FormControl>
+                <Input placeholder="75" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="neck"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Neck (cm)</FormLabel>
+              <FormControl>
+                <Input placeholder="33" {...field} />
+              </FormControl>
               <FormDescription>
-                This is your public display name.
+                Measure the neck circumference just below the larynx while
+                looking straight ahead.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="belly"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Belly (cm)</FormLabel>
+              <FormControl>
+                <Input placeholder="85" {...field} />
+              </FormControl>
+              <FormDescription>
+                Measure the waist circumference at the belly button. Hold the
+                tape parallel to the floor.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit" className="w-full">
+          Calculate Bodyfat Percentage
+        </Button>
       </form>
     </Form>
   );
