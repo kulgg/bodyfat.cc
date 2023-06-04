@@ -19,36 +19,28 @@ import { historyAtom } from "./History";
 import { Sex } from "@/lib/model";
 
 const formSchema = z.object({
-  height: z.preprocess(
-    (args) => (args === "" ? undefined : args),
-    z.coerce
-      .number({ invalid_type_error: "Height must be a number" })
-      .positive("Height must be positive")
-  ),
-  weight: z.preprocess(
-    (args) => (args === "" ? undefined : args),
-    z.coerce
-      .number({ invalid_type_error: "Weight must be a number" })
-      .positive("Weight must be positive")
-  ),
-  neck: z.preprocess(
-    (args) => (args === "" ? undefined : args),
-    z.coerce
-      .number({ invalid_type_error: "Neck must be a number" })
-      .positive("Neck must be positive")
-  ),
-  belly: z.preprocess(
-    (args) => (args === "" ? undefined : args),
-    z.coerce
-      .number({ invalid_type_error: "Belly must be a number" })
-      .positive("Belly must be positive")
-  ),
+  height: z
+    .string()
+    .min(1, { message: "Required." })
+    .regex(/\d+/, { message: "Height must be a number." }),
+  weight: z
+    .string()
+    .min(1, { message: "Required." })
+    .regex(/\d+/, { message: "Weight must be a number." }),
+  neck: z
+    .string()
+    .min(1, { message: "Required." })
+    .regex(/\d+/, { message: "Neck must be a number." }),
+  belly: z
+    .string()
+    .min(1, { message: "Required." })
+    .regex(/\d+/, { message: "Belly must be a number." }),
 });
 
 export default function MaleForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {},
+    defaultValues: { height: "", weight: "", neck: "", belly: "" },
   });
 
   const [history, setHistory] = useAtom(historyAtom);
@@ -60,13 +52,15 @@ export default function MaleForm() {
         created: new Date().toISOString(),
         measurement: {
           sex: Sex.MALE,
-          height: values.height,
-          weight: values.weight,
-          neck: values.neck,
-          belly: values.belly,
+          height: parseInt(values.height),
+          weight: parseInt(values.weight),
+          neck: parseInt(values.neck),
+          belly: parseInt(values.belly),
         },
       },
     ]);
+
+    form.reset();
   }
 
   return (
