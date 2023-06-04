@@ -2,7 +2,6 @@
 
 import { Entry, Sex } from "@/lib/model";
 import { useEffect, useState } from "react";
-import HistoryEntry from "./HistoryEntry";
 import {
   TableCaption,
   TableHeader,
@@ -12,15 +11,25 @@ import {
   TableCell,
   Table,
 } from "@/components/ui/table";
-import { formatDate, getBodyfat } from "@/lib/utils";
+import { formatDate, getBodyfatResult } from "@/lib/utils";
+
+import { atomWithStorage } from "jotai/utils";
+import { useAtom } from "jotai";
+
+import { Trash2 } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+const historyAtom = atomWithStorage<Entry[]>("history", []);
 
 function History() {
-  const [history, setHistory] = useState<Entry[]>([]);
+  const [history, setHistory] = useAtom(historyAtom);
+  // const [history, setHistory] = useState<Entry[]>([]);
 
   useEffect(() => {
-    setHistory([
+    setHistory((x) => [
+      ...x,
       {
-        created: new Date(),
+        created: new Date().toISOString(),
         measurement: {
           belly: 80.5,
           sex: Sex.MALE,
@@ -30,7 +39,7 @@ function History() {
         },
       },
       {
-        created: new Date(),
+        created: new Date().toISOString(),
         measurement: {
           sex: Sex.FEMALE,
           height: 185,
@@ -58,6 +67,7 @@ function History() {
             <TableHead>Belly (cm)</TableHead>
             <TableHead>Waist (cm)</TableHead>
             <TableHead>Hip (cm)</TableHead>
+            <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -66,7 +76,7 @@ function History() {
               <TableCell className="whitespace-nowrap">
                 {formatDate(x.created)}
               </TableCell>
-              <TableCell>{getBodyfat(x).toFixed(2)}</TableCell>
+              <TableCell>{getBodyfatResult(x)}</TableCell>
               <TableCell>
                 {x.measurement.sex === Sex.FEMALE ? "👩" : "👨"}
               </TableCell>
@@ -81,6 +91,14 @@ function History() {
               </TableCell>
               <TableCell>
                 {x.measurement.hip ? x.measurement.hip : "-"}
+              </TableCell>
+              <TableCell>
+                <Trash2
+                  className="w-4 h-4 text-slate-100 cursor-pointer"
+                  onClick={() => {
+                    setHistory((x) => x.filter((v, j) => j !== i));
+                  }}
+                />
               </TableCell>
             </TableRow>
           ))}

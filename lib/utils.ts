@@ -6,8 +6,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(date: Date) {
-  return date.toISOString().split("T")[0].replaceAll("-", "/");
+export function formatDate(date: string) {
+  return date.split("T")[0].replaceAll("-", "/");
 }
 
 export function getBodyfat(entry: Entry) {
@@ -30,4 +30,12 @@ export function getBodyfat(entry: Entry) {
         104.912
       );
   }
+}
+
+export function getBodyfatResult(entry: Entry) {
+  let percentage = getBodyfat(entry);
+
+  if (percentage < 0) return "Invalid";
+
+  return percentage.toFixed(2);
 }
