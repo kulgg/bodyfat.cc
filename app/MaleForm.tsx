@@ -82,7 +82,7 @@ export default function MaleForm() {
             <FormItem>
               <FormLabel>Height (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="177" {...field} />
+                <Input placeholder="177" {...field} autoComplete="off" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,7 +95,7 @@ export default function MaleForm() {
             <FormItem>
               <FormLabel>Weight (kg)</FormLabel>
               <FormControl>
-                <Input placeholder="75" {...field} />
+                <Input placeholder="75" {...field} autoComplete="off" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -108,7 +108,7 @@ export default function MaleForm() {
             <FormItem>
               <FormLabel>Neck (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="33" {...field} />
+                <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
               <FormDescription>
                 Measure the neck circumference just below the larynx while
@@ -125,7 +125,7 @@ export default function MaleForm() {
             <FormItem>
               <FormLabel>Belly (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="85" {...field} />
+                <Input placeholder="85" {...field} autoComplete="off" />
               </FormControl>
               <FormDescription>
                 Measure the waist circumference at the belly button. Hold the

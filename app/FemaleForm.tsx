@@ -86,7 +86,7 @@ export default function FemaleForm() {
             <FormItem>
               <FormLabel>Height (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="161" {...field} />
+                <Input placeholder="161" {...field} autoComplete="off" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,7 +99,7 @@ export default function FemaleForm() {
             <FormItem>
               <FormLabel>Weight (kg)</FormLabel>
               <FormControl>
-                <Input placeholder="70" {...field} />
+                <Input placeholder="70" {...field} autoComplete="off" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -112,7 +112,7 @@ export default function FemaleForm() {
             <FormItem>
               <FormLabel>Neck (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="33" {...field} />
+                <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
               <FormDescription>
                 Measure the neck circumference just below the larynx while
@@ -129,7 +129,7 @@ export default function FemaleForm() {
             <FormItem>
               <FormLabel>Waist (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="71" {...field} />
+                <Input placeholder="71" {...field} autoComplete="off" />
               </FormControl>
               <FormDescription>
                 Measure the waist circumference at the smallest part of the
@@ -146,7 +146,7 @@ export default function FemaleForm() {
             <FormItem>
               <FormLabel>Hip (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="88" {...field} />
+                <Input placeholder="88" {...field} autoComplete="off" />
               </FormControl>
               <FormDescription>
                 Measure the hip circumference at the biggest part of the rear
