@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={cn(
-          "bg-slate-950 text-white max-w-4xl mx-auto dark font-default",
+          "bg-slate-950 text-white max-w-3xl mx-auto dark font-default",
           clash.variable,
           inter.variable
         )}
