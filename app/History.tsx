@@ -52,17 +52,17 @@ function History() {
               <TableCell>
                 {x.measurement.sex === Sex.FEMALE ? "👩" : "👨"}
               </TableCell>
-              <TableCell>{x.measurement.height}</TableCell>
-              <TableCell>{x.measurement.weight}</TableCell>
-              <TableCell>{x.measurement.neck}</TableCell>
+              <TableCell>{x.measurement.height.toFixed(1)}</TableCell>
+              <TableCell>{x.measurement.weight.toFixed(1)}</TableCell>
+              <TableCell>{x.measurement.neck.toFixed(1)}</TableCell>
               <TableCell>
-                {x.measurement.belly ? x.measurement.belly : "-"}
+                {x.measurement.belly ? x.measurement.belly.toFixed(1) : "-"}
               </TableCell>
               <TableCell>
-                {x.measurement.waist ? x.measurement.waist : "-"}
+                {x.measurement.waist ? x.measurement.waist.toFixed(1) : "-"}
               </TableCell>
               <TableCell>
-                {x.measurement.hip ? x.measurement.hip : "-"}
+                {x.measurement.hip ? x.measurement.hip.toFixed(1) : "-"}
               </TableCell>
               <TableCell>
                 <Trash2

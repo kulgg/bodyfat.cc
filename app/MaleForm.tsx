@@ -22,19 +22,19 @@ const formSchema = z.object({
   height: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/\d+/, { message: "Height must be a number." }),
+    .regex(/^\d+\.?\d*$/, { message: "Height must be a number." }),
   weight: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/\d+/, { message: "Weight must be a number." }),
+    .regex(/^\d+\.?\d*$/, { message: "Weight must be a number." }),
   neck: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/\d+/, { message: "Neck must be a number." }),
+    .regex(/^\d+\.?\d*$/, { message: "Neck must be a number." }),
   belly: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/\d+/, { message: "Belly must be a number." }),
+    .regex(/^\d+\.?\d*$/, { message: "Belly must be a number." }),
 });
 
 export default function MaleForm() {
@@ -52,10 +52,10 @@ export default function MaleForm() {
         created: new Date().toISOString(),
         measurement: {
           sex: Sex.MALE,
-          height: parseInt(values.height),
-          weight: parseInt(values.weight),
-          neck: parseInt(values.neck),
-          belly: parseInt(values.belly),
+          height: parseFloat(values.height),
+          weight: parseFloat(values.weight),
+          neck: parseFloat(values.neck),
+          belly: parseFloat(values.belly),
         },
       },
     ]);
