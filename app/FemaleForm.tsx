@@ -16,7 +16,9 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useAtom } from "jotai";
 import { historyAtom } from "./History";
-import { Sex } from "@/lib/model";
+import { Entry, Sex } from "@/lib/model";
+import { useToast } from "@/components/ui/use-toast";
+import { getBodyfatResult } from "@/lib/utils";
 
 const formSchema = z.object({
   height: z
@@ -46,24 +48,27 @@ export default function FemaleForm() {
     resolver: zodResolver(formSchema),
     defaultValues: { height: "", weight: "", neck: "", waist: "", hip: "" },
   });
+  const { toast } = useToast();
 
   const [history, setHistory] = useAtom(historyAtom);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setHistory((prev) => [
-      ...prev,
-      {
-        created: new Date().toISOString(),
-        measurement: {
-          sex: Sex.FEMALE,
-          height: parseFloat(values.height),
-          weight: parseFloat(values.weight),
-          neck: parseFloat(values.neck),
-          waist: parseFloat(values.waist),
-          hip: parseFloat(values.hip),
-        },
+    const entry: Entry = {
+      created: new Date().toISOString(),
+      measurement: {
+        sex: Sex.FEMALE,
+        height: parseFloat(values.height),
+        weight: parseFloat(values.weight),
+        neck: parseFloat(values.neck),
+        waist: parseFloat(values.waist),
+        hip: parseFloat(values.hip),
       },
-    ]);
+    };
+    toast({
+      title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
+    });
+
+    setHistory((prev) => [...prev, entry]);
 
     form.reset();
   }

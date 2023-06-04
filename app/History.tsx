@@ -18,6 +18,7 @@ import { useAtom } from "jotai";
 
 import { Trash2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Badge } from "@/components/ui/badge";
 
 export const historyAtom = atomWithStorage<Entry[]>("history", []);
 
@@ -31,7 +32,7 @@ function History() {
         <TableHeader>
           <TableRow>
             <TableHead>Date</TableHead>
-            <TableHead>BF%</TableHead>
+            <TableHead className="whitespace-nowrap">Bodyfat (%)</TableHead>
             <TableHead>Sex</TableHead>
             <TableHead>Height (cm)</TableHead>
             <TableHead>Weight (kg)</TableHead>
@@ -42,13 +43,15 @@ function History() {
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="text-slate-200">
           {history.map((x, i) => (
             <TableRow key={i}>
-              <TableCell className="whitespace-nowrap">
+              <TableCell className="whitespace-nowrap text-slate-400">
                 {formatDate(x.created)}
               </TableCell>
-              <TableCell>{getBodyfatResult(x)}</TableCell>
+              <TableCell>
+                <Badge>{getBodyfatResult(x)}</Badge>
+              </TableCell>
               <TableCell>
                 {x.measurement.sex === Sex.FEMALE ? "👩" : "👨"}
               </TableCell>

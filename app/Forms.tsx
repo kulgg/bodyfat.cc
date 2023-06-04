@@ -9,26 +9,30 @@ function Forms() {
   const [sexSelection, setSexSelection] = useState<"Male" | "Female">("Male");
 
   return (
-    <div className="space-y-4">
-      <RadioGroup className="flex items-center gap-4" value={sexSelection}>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem
-            value="Male"
-            id="Male"
-            onClick={() => setSexSelection("Male")}
-          />
-          <Label htmlFor="Male">Male</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem
-            value="Female"
-            id="Female"
-            onClick={() => setSexSelection("Female")}
-          />
-          <Label htmlFor="Female">Female</Label>
-        </div>
-      </RadioGroup>
-      {sexSelection === "Male" ? <MaleForm /> : <FemaleForm />}
+    <div>
+      <Label>Sex</Label>
+      <div className="my-2"></div>
+      <div className="space-y-6">
+        <RadioGroup className="flex items-center gap-4" value={sexSelection}>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem
+              value="Male"
+              id="Male"
+              onClick={() => setSexSelection("Male")}
+            />
+            <Label htmlFor="Male">Male</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem
+              value="Female"
+              id="Female"
+              onClick={() => setSexSelection("Female")}
+            />
+            <Label htmlFor="Female">Female</Label>
+          </div>
+        </RadioGroup>
+        {sexSelection === "Male" ? <MaleForm /> : <FemaleForm />}
+      </div>
     </div>
   );
 }
