@@ -1,7 +1,7 @@
 "use client";
 
 import { Entry, Sex } from "@/lib/model";
-import { useEffect, useState } from "react";
+import { useMemo, useEffect, useState } from "react";
 import {
   TableCaption,
   TableHeader,
@@ -25,6 +25,11 @@ export const historyAtom = atomWithStorage<Entry[]>("history", []);
 function History() {
   const [history, setHistory] = useAtom(historyAtom);
 
+  const sortedHistory = useMemo(
+    () => history.sort((a, b) => Date.parse(b.created) - Date.parse(a.created)),
+    [history]
+  );
+
   return (
     <div>
       <Table>
@@ -44,7 +49,7 @@ function History() {
           </TableRow>
         </TableHeader>
         <TableBody className="text-slate-200">
-          {history.map((x, i) => (
+          {sortedHistory.map((x, i) => (
             <TableRow key={i}>
               <TableCell className="whitespace-nowrap text-slate-400">
                 {formatDate(x.created)}
