@@ -7,7 +7,7 @@ import FemaleImperialForm from "./FemaleImperialForm";
 import FemaleMetricForm from "./FemaleMetricForm";
 import MaleImperialForm from "./MaleImperialForm";
 import MaleMetricForm from "./MaleMetricForm";
-import { unitSystemAtom } from "./UnitSystemSwitch";
+import { unitSystemAtom } from "../UnitSystemSwitch";
 
 function Forms() {
   const [sexSelection, setSexSelection] = useState<"Male" | "Female">("Male");

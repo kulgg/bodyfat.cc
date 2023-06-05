@@ -18,13 +18,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { historyAtom } from "./MetricHistory";
+import { historyAtom } from "../(history)/MetricHistory";
 
 const formSchema = z.object({
-  height: z
+  height_foot: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Height must be a number." }),
+    .regex(/^\d+$/, { message: "Height must be a number." }),
+  height_inches: z
+    .string()
+    .min(1, { message: "Required." })
+    .regex(/^\d+$/, { message: "Height must be a number." }),
   weight: z
     .string()
     .min(1, { message: "Required." })
@@ -33,45 +37,42 @@ const formSchema = z.object({
     .string()
     .min(1, { message: "Required." })
     .regex(/^\d+\.?\d*$/, { message: "Neck must be a number." }),
-  waist: z
+  belly: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Waist must be a number." }),
-  hip: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Hip must be a number." }),
+    .regex(/^\d+\.?\d*$/, { message: "Belly must be a number." }),
 });
 
-export default function FemaleMetricForm() {
+export default function MaleImperialForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      height: "",
+      height_foot: "",
+      height_inches: "",
       weight: "",
       neck: "",
-      waist: "",
-      hip: "",
+      belly: "",
     },
   });
-  const { toast } = useToast();
 
   const [history, setHistory] = useAtom(historyAtom);
+
+  const { toast } = useToast();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const entry: Entry = {
       created: new Date().toISOString(),
       measurement: {
-        sex: Sex.FEMALE,
-        height: parseFloat(values.height),
+        sex: Sex.MALE,
+        height: parseFloat(values.height_foot),
+        height_inches: parseFloat(values.height_inches),
         weight: parseFloat(values.weight),
         neck: parseFloat(values.neck),
-        waist: parseFloat(values.waist),
-        hip: parseFloat(values.hip),
+        belly: parseFloat(values.belly),
       },
     };
     toast({
-      title: `You have ${getBodyfatResult(entry, true)}% bodyfat!`,
+      title: `You have ${getBodyfatResult(entry, false)}% bodyfat!`,
     });
 
     setHistory((prev) => [...prev, entry]);
@@ -85,27 +86,42 @@ export default function FemaleMetricForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="height"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Height (cm)</FormLabel>
-              <FormControl>
-                <Input placeholder="161" {...field} autoComplete="off" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-2">
+          <FormField
+            control={form.control}
+            name="height_foot"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="">Height (ft)</FormLabel>
+                <FormControl>
+                  <Input placeholder="5" {...field} autoComplete="off" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="height_inches"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="">Height (in)</FormLabel>
+                <FormControl>
+                  <Input placeholder="7" {...field} autoComplete="off" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (kg)</FormLabel>
+              <FormLabel>Weight (lb)</FormLabel>
               <FormControl>
-                <Input placeholder="70" {...field} autoComplete="off" />
+                <Input placeholder="75" {...field} autoComplete="off" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -116,7 +132,7 @@ export default function FemaleMetricForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (cm)</FormLabel>
+              <FormLabel>Neck (in)</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
@@ -130,33 +146,16 @@ export default function FemaleMetricForm() {
         />
         <FormField
           control={form.control}
-          name="waist"
+          name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Waist (cm)</FormLabel>
+              <FormLabel>Belly (in)</FormLabel>
               <FormControl>
-                <Input placeholder="71" {...field} autoComplete="off" />
+                <Input placeholder="85" {...field} autoComplete="off" />
               </FormControl>
               <FormDescription>
-                Measure the waist circumference at the smallest part of the
-                waist. Hold the tape parallel to the floor.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="hip"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Hip (cm)</FormLabel>
-              <FormControl>
-                <Input placeholder="88" {...field} autoComplete="off" />
-              </FormControl>
-              <FormDescription>
-                Measure the hip circumference at the biggest part of the rear
-                end. Hold the tape parallel to the floor.
+                Measure the waist circumference at the belly button. Hold the
+                tape parallel to the floor.
               </FormDescription>
               <FormMessage />
             </FormItem>
