@@ -19,6 +19,8 @@ import { historyAtom } from "./History";
 import { Entry, Sex } from "@/lib/model";
 import { useToast } from "@/components/ui/use-toast";
 import { getBodyfatResult } from "@/lib/utils";
+import { unitSystemAtom } from "./UnitSystemSwitch";
+import { getUnitName } from "@/lib/units";
 
 const formSchema = z.object({
   height: z
@@ -46,6 +48,7 @@ export default function MaleForm() {
   });
 
   const [history, setHistory] = useAtom(historyAtom);
+  const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   const { toast } = useToast();
 
@@ -80,7 +83,9 @@ export default function MaleForm() {
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Height (cm)</FormLabel>
+              <FormLabel>
+                Height ({getUnitName("height", unitSystem)})
+              </FormLabel>
               <FormControl>
                 <Input placeholder="177" {...field} autoComplete="off" />
               </FormControl>
@@ -93,7 +98,9 @@ export default function MaleForm() {
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (kg)</FormLabel>
+              <FormLabel>
+                Weight ({getUnitName("weight", unitSystem)})
+              </FormLabel>
               <FormControl>
                 <Input placeholder="75" {...field} autoComplete="off" />
               </FormControl>
@@ -106,7 +113,7 @@ export default function MaleForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (cm)</FormLabel>
+              <FormLabel>Neck ({getUnitName("neck", unitSystem)})</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
@@ -123,7 +130,7 @@ export default function MaleForm() {
           name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Belly (cm)</FormLabel>
+              <FormLabel>Belly ({getUnitName("belly", unitSystem)})</FormLabel>
               <FormControl>
                 <Input placeholder="85" {...field} autoComplete="off" />
               </FormControl>

@@ -19,6 +19,8 @@ import { historyAtom } from "./History";
 import { Entry, Sex } from "@/lib/model";
 import { useToast } from "@/components/ui/use-toast";
 import { getBodyfatResult } from "@/lib/utils";
+import { unitSystemAtom } from "./UnitSystemSwitch";
+import { getUnitName } from "@/lib/units";
 
 const formSchema = z.object({
   height: z
@@ -51,6 +53,7 @@ export default function FemaleForm() {
   const { toast } = useToast();
 
   const [history, setHistory] = useAtom(historyAtom);
+  const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const entry: Entry = {
@@ -84,7 +87,9 @@ export default function FemaleForm() {
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Height (cm)</FormLabel>
+              <FormLabel>
+                Height ({getUnitName("height", unitSystem)})
+              </FormLabel>
               <FormControl>
                 <Input placeholder="161" {...field} autoComplete="off" />
               </FormControl>
@@ -97,7 +102,9 @@ export default function FemaleForm() {
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (kg)</FormLabel>
+              <FormLabel>
+                Weight ({getUnitName("weight", unitSystem)})
+              </FormLabel>
               <FormControl>
                 <Input placeholder="70" {...field} autoComplete="off" />
               </FormControl>
@@ -110,7 +117,7 @@ export default function FemaleForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (cm)</FormLabel>
+              <FormLabel>Neck ({getUnitName("neck", unitSystem)})</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
@@ -127,7 +134,7 @@ export default function FemaleForm() {
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Waist (cm)</FormLabel>
+              <FormLabel>Waist ({getUnitName("waist", unitSystem)})</FormLabel>
               <FormControl>
                 <Input placeholder="71" {...field} autoComplete="off" />
               </FormControl>
@@ -144,7 +151,7 @@ export default function FemaleForm() {
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Hip (cm)</FormLabel>
+              <FormLabel>Hip ({getUnitName("hip", unitSystem)})</FormLabel>
               <FormControl>
                 <Input placeholder="88" {...field} autoComplete="off" />
               </FormControl>

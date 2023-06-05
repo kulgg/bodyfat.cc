@@ -7,7 +7,7 @@ import { atomWithStorage } from "jotai/utils";
 import { useAtom } from "jotai";
 import { capitalize } from "@/lib/utils";
 
-const unitSystemAtom = atomWithStorage<"metric" | "imperial">(
+export const unitSystemAtom = atomWithStorage<"metric" | "imperial">(
   "unitSystem",
   "metric"
 );
@@ -19,8 +19,7 @@ function UnitSystemSwitch() {
     <div className="flex items-center space-x-2 scale-90">
       <Switch
         id="unitSwitch"
-        className=""
-        checked={unitSystem === "metric"}
+        checked={unitSystem === "imperial"}
         onClick={() =>
           setUnitSystem((prev) => (prev === "metric" ? "imperial" : "metric"))
         }
