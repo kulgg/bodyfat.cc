@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import React from "react";
+import UnitSystemSwitch from "./UnitSystemSwitch";
 
 function Header() {
   return (
@@ -12,17 +13,7 @@ function Header() {
           <h1 className="text-3xl font-display">bodyfat.io</h1>
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
-          <div className="flex items-center space-x-2 scale-90">
-            <Switch
-              id="unitSwitch"
-              className=""
-              defaultChecked={true}
-              checked={true}
-            />
-            <Label htmlFor="unitSwitch" className="">
-              Metric
-            </Label>
-          </div>
+          <UnitSystemSwitch />
           <a href="https://github.com/kulgg/bodyfat.io" target="_blank">
             <Icons.gitHub className="w-5 h-5" />
           </a>
