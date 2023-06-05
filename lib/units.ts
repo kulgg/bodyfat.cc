@@ -1,55 +1,30 @@
-export interface UnitConfiguration {
-  metric_name: string;
-  imperial_name: string;
+export function footToCm(foot: number, inches: number): number {
+  return 30.48 * foot + inchesToCm(inches);
 }
 
-const map = new Map<string, UnitConfiguration>([
-  [
-    "height",
-    {
-      metric_name: "cm",
-      imperial_name: "foot and inches",
-    },
-  ],
-  [
-    "weight",
-    {
-      metric_name: "kg",
-      imperial_name: "lbs",
-    },
-  ],
-  [
-    "neck",
-    {
-      metric_name: "cm",
-      imperial_name: "inches",
-    },
-  ],
-  [
-    "belly",
-    {
-      metric_name: "cm",
-      imperial_name: "inches",
-    },
-  ],
-  [
-    "waist",
-    {
-      metric_name: "cm",
-      imperial_name: "inches",
-    },
-  ],
-  [
-    "hip",
-    {
-      metric_name: "cm",
-      imperial_name: "inches",
-    },
-  ],
-]);
+export function footToInches(foot: number): number {
+  return 12 * foot;
+}
 
-export function getUnitName(name: string, unitSystem: "metric" | "imperial") {
-  return unitSystem === "metric"
-    ? map.get(name)?.metric_name
-    : map.get(name)?.imperial_name;
+export function inchesToCm(inches: number) {
+  return 2.54 * inches;
+}
+
+export function poundsToKg(pounds: number) {
+  return 0.453592 * pounds;
+}
+
+export function toFeet(cm: number): number[] {
+  var realFeet = (cm * 0.3937) / 12;
+  var feet = Math.floor(realFeet);
+  var inches = Math.round((realFeet - feet) * 12);
+  return [feet, inches];
+}
+
+export function toPounds(kg: number) {
+  return 2.20462 * kg;
+}
+
+export function toInches(cm: number) {
+  return 0.393701 * cm;
 }

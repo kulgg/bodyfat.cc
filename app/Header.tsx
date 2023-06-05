@@ -1,8 +1,5 @@
 import { Icons } from "@/components/ui/icons";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
-import React from "react";
 import UnitSystemSwitch from "./UnitSystemSwitch";
 
 function Header() {

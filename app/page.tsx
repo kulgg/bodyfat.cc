@@ -10,10 +10,7 @@ export default function Home() {
         <div>
           <Forms />
         </div>
-        <div id="history">
-          <h2 className="text-xl text-slate-100 font-semibold my-4">History</h2>
-          <History />
-        </div>
+        <History />
       </div>
     </main>
   );

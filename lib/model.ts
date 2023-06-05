@@ -5,6 +5,7 @@ export enum Sex {
 
 interface GeneralMeasurement {
   height: number;
+  height_inches?: number;
   weight: number;
   neck: number;
 }

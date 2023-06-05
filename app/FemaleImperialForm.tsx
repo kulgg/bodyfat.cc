@@ -1,7 +1,5 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -11,22 +9,26 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
-import { useAtom } from "jotai";
-import { historyAtom } from "./History";
-import { Entry, Sex } from "@/lib/model";
+import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { Entry, Sex } from "@/lib/model";
 import { getBodyfatResult } from "@/lib/utils";
-import { unitSystemAtom } from "./UnitSystemSwitch";
-import { getUnitName } from "@/lib/units";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAtom } from "jotai";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { historyAtom } from "./MetricHistory";
 
 const formSchema = z.object({
-  height: z
+  height_foot: z
     .string()
     .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Height must be a number." }),
+    .regex(/^\d+$/, { message: "Height must be a number." }),
+  height_inches: z
+    .string()
+    .min(1, { message: "Required." })
+    .regex(/^\d+$/, { message: "Height must be a number." }),
   weight: z
     .string()
     .min(1, { message: "Required." })
@@ -45,22 +47,29 @@ const formSchema = z.object({
     .regex(/^\d+\.?\d*$/, { message: "Hip must be a number." }),
 });
 
-export default function FemaleForm() {
+export default function FemaleImperialForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { height: "", weight: "", neck: "", waist: "", hip: "" },
+    defaultValues: {
+      height_foot: "",
+      height_inches: "",
+      weight: "",
+      neck: "",
+      waist: "",
+      hip: "",
+    },
   });
   const { toast } = useToast();
 
   const [history, setHistory] = useAtom(historyAtom);
-  const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const entry: Entry = {
       created: new Date().toISOString(),
       measurement: {
         sex: Sex.FEMALE,
-        height: parseFloat(values.height),
+        height: parseFloat(values.height_foot),
+        height_inches: parseFloat(values.height_inches),
         weight: parseFloat(values.weight),
         neck: parseFloat(values.neck),
         waist: parseFloat(values.waist),
@@ -68,7 +77,7 @@ export default function FemaleForm() {
       },
     };
     toast({
-      title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
+      title: `You have ${getBodyfatResult(entry, false)}% bodyfat!`,
     });
 
     setHistory((prev) => [...prev, entry]);
@@ -82,29 +91,40 @@ export default function FemaleForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="height"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Height ({getUnitName("height", unitSystem)})
-              </FormLabel>
-              <FormControl>
-                <Input placeholder="161" {...field} autoComplete="off" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-2">
+          <FormField
+            control={form.control}
+            name="height_foot"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="">Height (ft)</FormLabel>
+                <FormControl>
+                  <Input placeholder="5" {...field} autoComplete="off" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="height_inches"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="">Height (in)</FormLabel>
+                <FormControl>
+                  <Input placeholder="7" {...field} autoComplete="off" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           control={form.control}
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Weight ({getUnitName("weight", unitSystem)})
-              </FormLabel>
+              <FormLabel>Weight (lb)</FormLabel>
               <FormControl>
                 <Input placeholder="70" {...field} autoComplete="off" />
               </FormControl>
@@ -117,7 +137,7 @@ export default function FemaleForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck ({getUnitName("neck", unitSystem)})</FormLabel>
+              <FormLabel>Neck (in)</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
@@ -134,7 +154,7 @@ export default function FemaleForm() {
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Waist ({getUnitName("waist", unitSystem)})</FormLabel>
+              <FormLabel>Waist (in)</FormLabel>
               <FormControl>
                 <Input placeholder="71" {...field} autoComplete="off" />
               </FormControl>
@@ -151,7 +171,7 @@ export default function FemaleForm() {
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Hip ({getUnitName("hip", unitSystem)})</FormLabel>
+              <FormLabel>Hip (in)</FormLabel>
               <FormControl>
                 <Input placeholder="88" {...field} autoComplete="off" />
               </FormControl>

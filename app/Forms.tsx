@@ -1,12 +1,17 @@
 "use client";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import React, { useState } from "react";
-import MaleForm from "./MaleForm";
-import FemaleForm from "./FemaleForm";
+import { useAtom } from "jotai";
+import { useState } from "react";
+import FemaleImperialForm from "./FemaleImperialForm";
+import FemaleMetricForm from "./FemaleMetricForm";
+import MaleImperialForm from "./MaleImperialForm";
+import MaleMetricForm from "./MaleMetricForm";
+import { unitSystemAtom } from "./UnitSystemSwitch";
 
 function Forms() {
   const [sexSelection, setSexSelection] = useState<"Male" | "Female">("Male");
+  const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
     <div>
@@ -31,7 +36,17 @@ function Forms() {
             <Label htmlFor="Female">Female</Label>
           </div>
         </RadioGroup>
-        {sexSelection === "Male" ? <MaleForm /> : <FemaleForm />}
+        {sexSelection === "Male" ? (
+          unitSystem === "metric" ? (
+            <MaleMetricForm />
+          ) : (
+            <MaleImperialForm />
+          )
+        ) : unitSystem === "metric" ? (
+          <FemaleMetricForm />
+        ) : (
+          <FemaleImperialForm />
+        )}
       </div>
     </div>
   );
