@@ -2,14 +2,9 @@
 
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { unitSystemAtom } from "@/lib/atoms";
 import { capitalize } from "@/lib/utils";
 import { useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
-
-export const unitSystemAtom = atomWithStorage<"metric" | "imperial">(
-  "unitSystem",
-  "metric"
-);
 
 function UnitSystemSwitch() {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);

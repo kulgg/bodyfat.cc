@@ -2,7 +2,7 @@
 import { useAtom } from "jotai";
 import ImperialHistory from "./ImperialHistory";
 import MetricHistory from "./MetricHistory";
-import { unitSystemAtom } from "../UnitSystemSwitch";
+import { unitSystemAtom } from "@/lib/atoms";
 
 function History() {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);

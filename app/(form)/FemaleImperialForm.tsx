@@ -12,13 +12,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { historyAtom } from "@/lib/atoms";
 import { Entry, Sex } from "@/lib/model";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { historyAtom } from "../(history)/MetricHistory";
 
 const formSchema = z.object({
   height_foot: z

@@ -19,8 +19,7 @@ import { atomWithStorage } from "jotai/utils";
 import { Badge } from "@/components/ui/badge";
 import { footToCm, inchesToCm, poundsToKg } from "@/lib/units";
 import { Trash2 } from "lucide-react";
-
-export const historyAtom = atomWithStorage<Entry[]>("history", []);
+import { historyAtom } from "@/lib/atoms";
 
 function MetricHistory() {
   const [history, setHistory] = useAtom(historyAtom);

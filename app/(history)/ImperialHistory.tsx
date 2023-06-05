@@ -18,7 +18,7 @@ import { useAtom } from "jotai";
 import { Badge } from "@/components/ui/badge";
 import { toFeet, toInches, toPounds } from "@/lib/units";
 import { Trash2 } from "lucide-react";
-import { historyAtom } from "./MetricHistory";
+import { historyAtom } from "@/lib/atoms";
 
 function ImperialHistory() {
   const [history, setHistory] = useAtom(historyAtom);
