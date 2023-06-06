@@ -60,10 +60,10 @@ function History() {
               </TableCell>
               <TableCell>
                 {isMetricSystem
-                  ? x.metric_measurement.height
-                  : `${x.imperial_measurement.height.toFixed(0)}'${
-                      x.imperial_measurement.height_inches
-                    }"`}
+                  ? x.metric_measurement.height.toFixed(1)
+                  : `${x.imperial_measurement.height.toFixed(
+                      0
+                    )}'${x.imperial_measurement.height_inches?.toFixed(0)}"`}
               </TableCell>
               <TableCell>
                 {isMetricSystem
