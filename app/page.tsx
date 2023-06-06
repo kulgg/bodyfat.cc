@@ -4,9 +4,9 @@ import Header from "./Header";
 
 export default function Home() {
   return (
-    <main className="px-2">
+    <main className="">
       <Header />
-      <div className="space-y-32 sm:space-y-40">
+      <div className="px-2 space-y-32 sm:space-y-40 max-w-[800px] mx-auto">
         <div>
           <Forms />
         </div>

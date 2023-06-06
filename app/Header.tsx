@@ -1,16 +1,18 @@
 import { Icons } from "@/components/ui/icons";
 import Link from "next/link";
 import UnitSystemSwitch from "./UnitSystemSwitch";
+import { About } from "./About";
 
 function Header() {
   return (
-    <header className="h-16 mb-8 sm:mb-16 flex flex-col justify-center">
+    <header className="h-16 border-b border-b-slate-800 mb-8 sm:mb-16 flex flex-col justify-center max-w-4xl mx-auto px-1">
       <div className="justify-between flex items-center">
         <Link href={"/"}>
           <h1 className="text-3xl font-display">bodyfat.io</h1>
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
           <UnitSystemSwitch />
+          <About />
           <a href="https://github.com/kulgg/bodyfat.io" target="_blank">
             <Icons.gitHub className="w-5 h-5" />
           </a>
