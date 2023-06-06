@@ -7,3 +7,8 @@ export const unitSystemAtom = atomWithStorage<"metric" | "imperial">(
   "unitSystem",
   "metric"
 );
+
+export const sexSelectionAtom = atomWithStorage<"Male" | "Female">(
+  "sex_selection",
+  "Male"
+);

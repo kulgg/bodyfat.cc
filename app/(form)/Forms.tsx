@@ -1,7 +1,7 @@
 "use client";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { unitSystemAtom } from "@/lib/atoms";
+import { isMaleFormAtom, sexSelectionAtom, unitSystemAtom } from "@/lib/atoms";
 import { useAtom } from "jotai";
 import { useState } from "react";
 import FemaleImperialForm from "./FemaleImperialForm";
@@ -10,7 +10,7 @@ import MaleImperialForm from "./MaleImperialForm";
 import MaleMetricForm from "./MaleMetricForm";
 
 function Forms() {
-  const [sexSelection, setSexSelection] = useState<"Male" | "Female">("Male");
+  const [sexSelection, setSexSelection] = useAtom(sexSelectionAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
@@ -19,21 +19,23 @@ function Forms() {
       <div className="my-2"></div>
       <div className="space-y-6">
         <RadioGroup className="flex items-center gap-4" value={sexSelection}>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem
-              value="Male"
-              id="Male"
-              onClick={() => setSexSelection("Male")}
-            />
-            <Label htmlFor="Male">Male</Label>
+          <div
+            className="flex items-center space-x-2"
+            onClick={() => setSexSelection("Male")}
+          >
+            <RadioGroupItem value="Male" id="Male" />
+            <Label htmlFor="Male" className="cursor-pointer">
+              Male
+            </Label>
           </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem
-              value="Female"
-              id="Female"
-              onClick={() => setSexSelection("Female")}
-            />
-            <Label htmlFor="Female">Female</Label>
+          <div
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => setSexSelection("Female")}
+          >
+            <RadioGroupItem value="Female" id="Female" />
+            <Label htmlFor="Female" className="cursor-pointer">
+              Female
+            </Label>
           </div>
         </RadioGroup>
         {sexSelection === "Male" ? (
