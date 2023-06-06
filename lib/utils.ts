@@ -1,7 +1,6 @@
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { Entry, Sex } from "./model";
-import { footToInches } from "./units";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

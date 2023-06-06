@@ -1,8 +1,4 @@
 "use client";
-import { useAtom } from "jotai";
-import ImperialHistory from "./ImperialHistory";
-import MetricHistory from "./MetricHistory";
-import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import {
   Table,
   TableBody,
@@ -12,8 +8,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import { Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
+import { useAtom } from "jotai";
 import { Badge, Trash2 } from "lucide-react";
 import { useMemo } from "react";
 

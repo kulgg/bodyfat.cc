@@ -1,6 +1,6 @@
 import Forms from "./(form)/Forms";
-import Header from "./Header";
 import History from "./(history)/History";
+import Header from "./Header";
 
 export default function Home() {
   return (
