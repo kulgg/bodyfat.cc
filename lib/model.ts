@@ -26,5 +26,6 @@ interface FemaleMeasurement extends GeneralMeasurement {
 
 export interface Entry {
   created: string;
-  measurement: MaleMeasurement | FemaleMeasurement;
+  metric_measurement: MaleMeasurement | FemaleMeasurement;
+  imperial_measurement: MaleMeasurement | FemaleMeasurement;
 }

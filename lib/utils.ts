@@ -11,55 +11,33 @@ export function formatDate(date: string) {
   return date.split("T")[0].replaceAll("-", "/");
 }
 
-export function getBodyfat(entry: Entry, is_metric: boolean) {
-  if (is_metric) {
-    switch (entry.measurement.sex) {
-      case Sex.MALE:
-        return (
-          86.01 * Math.log10(entry.measurement.belly - entry.measurement.neck) -
-          70.041 * Math.log10(entry.measurement.height) +
-          30.3
-        );
-      case Sex.FEMALE:
-        return (
-          163.205 *
-            Math.log10(
-              entry.measurement.waist +
-                entry.measurement.hip -
-                entry.measurement.neck
-            ) -
-          97.684 * Math.log10(entry.measurement.height) -
-          104.912
-        );
-    }
-  }
-
-  const height =
-    footToInches(entry.measurement.height) + entry.measurement.height_inches!;
-
-  switch (entry.measurement.sex) {
+export function getBodyfat(entry: Entry) {
+  switch (entry.metric_measurement.sex) {
     case Sex.MALE:
       return (
-        86.01 * Math.log10(entry.measurement.belly - entry.measurement.neck) -
-        70.041 * Math.log10(height) +
-        36.76
+        86.01 *
+          Math.log10(
+            entry.metric_measurement.belly - entry.metric_measurement.neck
+          ) -
+        70.041 * Math.log10(entry.metric_measurement.height) +
+        30.3
       );
     case Sex.FEMALE:
       return (
         163.205 *
           Math.log10(
-            entry.measurement.waist +
-              entry.measurement.hip -
-              entry.measurement.neck
+            entry.metric_measurement.waist +
+              entry.metric_measurement.hip -
+              entry.metric_measurement.neck
           ) -
-        97.684 * Math.log10(height) -
-        78.387
+        97.684 * Math.log10(entry.metric_measurement.height) -
+        104.912
       );
   }
 }
 
-export function getBodyfatResult(entry: Entry, is_metric: boolean) {
-  let percentage = getBodyfat(entry, is_metric);
+export function getBodyfatResult(entry: Entry) {
+  let percentage = getBodyfat(entry);
 
   if (percentage < 0) return "Invalid";
 

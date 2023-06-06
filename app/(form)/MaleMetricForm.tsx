@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom } from "@/lib/atoms";
 import { Entry, Sex } from "@/lib/model";
+import { toFeet, toInches, toPounds } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
@@ -50,18 +51,28 @@ export default function MaleMetricForm() {
   const { toast } = useToast();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const imperialHeight = toFeet(parseFloat(values.height));
+
     const entry: Entry = {
       created: new Date().toISOString(),
-      measurement: {
+      metric_measurement: {
         sex: Sex.MALE,
         height: parseFloat(values.height),
         weight: parseFloat(values.weight),
         neck: parseFloat(values.neck),
         belly: parseFloat(values.belly),
       },
+      imperial_measurement: {
+        sex: Sex.MALE,
+        height: imperialHeight[0],
+        height_inches: imperialHeight[1],
+        weight: toPounds(parseFloat(values.weight)),
+        neck: toInches(parseFloat(values.neck)),
+        belly: toInches(parseFloat(values.belly)),
+      },
     };
     toast({
-      title: `You have ${getBodyfatResult(entry, true)}% bodyfat!`,
+      title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
     });
 
     setHistory((prev) => [...prev, entry]);
