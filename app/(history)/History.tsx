@@ -1,4 +1,5 @@
 "use client";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -12,7 +13,7 @@ import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import { Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
 import { useAtom } from "jotai";
-import { Badge, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useMemo } from "react";
 
 function History() {
