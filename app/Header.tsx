@@ -1,7 +1,7 @@
 import { Icons } from "@/components/ui/icons";
 import Link from "next/link";
-import UnitSystemSwitch from "./UnitSystemSwitch";
 import { About } from "./About";
+import UnitSystemSwitch from "./UnitSystemSwitch";
 
 function Header() {
   return (

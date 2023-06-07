@@ -1,9 +1,8 @@
 "use client";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { isMaleFormAtom, sexSelectionAtom, unitSystemAtom } from "@/lib/atoms";
+import { sexSelectionAtom, unitSystemAtom } from "@/lib/atoms";
 import { useAtom } from "jotai";
-import { useState } from "react";
 import FemaleImperialForm from "./FemaleImperialForm";
 import FemaleMetricForm from "./FemaleMetricForm";
 import MaleImperialForm from "./MaleImperialForm";
