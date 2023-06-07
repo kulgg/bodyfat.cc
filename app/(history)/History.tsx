@@ -1,5 +1,8 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import { Icons } from "@/components/ui/icons";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,
@@ -9,16 +12,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import { Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
-import { useMemo } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 
 function History() {
   const [history, setHistory] = useAtom(historyAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      e.target.files[0].text().then((x) => setHistory(JSON.parse(x)));
+    }
+  };
 
   const sortedHistory = useMemo(
     () => history.sort((a, b) => Date.parse(b.created) - Date.parse(a.created)),
@@ -27,9 +42,47 @@ function History() {
 
   const isMetricSystem = unitSystem === "metric";
 
+  const dataStr =
+    "data:text/json;charset=utf-8," +
+    encodeURIComponent(JSON.stringify(history));
+
   return (
     <div id="history">
-      <h2 className="text-xl text-slate-100 font-semibold my-4">History</h2>
+      <div className="flex justify-between my-4">
+        <h2 className="text-xl text-slate-100 font-semibold">History</h2>
+        <div className="mt-2 flex items-center gap-3">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Input
+                  type="file"
+                  id="history_upload"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+                <Label htmlFor="history_upload">
+                  <Icons.upload className="w-5 h-5" />
+                </Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Import</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <a href={dataStr} download="bodyfat_history.json">
+                  <Icons.download className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Export</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </div>
       <Table>
         <TableCaption>Measurements History.</TableCaption>
         <TableHeader>

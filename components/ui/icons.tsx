@@ -25,6 +25,10 @@ import {
   User,
   X,
   type Icon as LucideIcon,
+  Download,
+  Upload,
+  FileUp,
+  ArrowRightFromLine,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -43,6 +47,8 @@ export const Icons = {
       <circle cx="12" cy="12" r="10"></circle>
     </svg>
   ),
+  upload: FileUp,
+  download: ArrowRightFromLine,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
