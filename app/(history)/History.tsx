@@ -18,20 +18,58 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useToast } from "@/components/ui/use-toast";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
-import { Sex } from "@/lib/model";
+import { Entry, Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useMemo, useState } from "react";
+import { z } from "zod";
+
+const schema = z.array(
+  z.object({
+    created: z.string(),
+    metric_measurement: z.object({
+      sex: z.number(),
+      height: z.number(),
+      weight: z.number(),
+      neck: z.number(),
+      belly: z.number().optional(),
+      waist: z.number().optional(),
+      hip: z.number().optional(),
+    }),
+    imperial_measurement: z.object({
+      sex: z.number(),
+      height: z.number(),
+      height_inches: z.number(),
+      weight: z.number(),
+      neck: z.number(),
+      belly: z.number().optional(),
+      waist: z.number().optional(),
+      hip: z.number().optional(),
+    }),
+  })
+);
 
 function History() {
   const [history, setHistory] = useAtom(historyAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
+  const { toast } = useToast();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      e.target.files[0].text().then((x) => setHistory(JSON.parse(x)));
+      e.target.files[0].text().then((x) => {
+        const parsed = schema.safeParse(JSON.parse(x));
+
+        if (!parsed.success) return;
+
+        setHistory(parsed.data as Entry[]);
+
+        toast({
+          title: `Import successful!`,
+        });
+      });
     }
   };
 
@@ -60,7 +98,7 @@ function History() {
                   className="hidden"
                   onChange={handleFileChange}
                 />
-                <Label htmlFor="history_upload">
+                <Label htmlFor="history_upload" className="cursor-pointer">
                   <Icons.upload className="w-5 h-5" />
                 </Label>
               </TooltipTrigger>
