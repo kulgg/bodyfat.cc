@@ -5,7 +5,7 @@ import { About } from "./About";
 
 function Header() {
   return (
-    <header className="h-16 border-b border-b-slate-800 mb-8 sm:mb-16 flex flex-col justify-center max-w-4xl mx-auto px-1">
+    <header className="h-16 border-b border-b-slate-800 flex flex-col justify-center max-w-4xl mx-auto px-1">
       <div className="justify-between flex items-center">
         <Link href={"/"}>
           <h1 className="text-3xl font-display">bodyfat.io</h1>
