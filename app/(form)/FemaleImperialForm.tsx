@@ -103,7 +103,7 @@ export default function FemaleImperialForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <div className="grid grid-cols-2">
+        <div className="gap-1 grid grid-cols-2">
           <FormField
             control={form.control}
             name="height_foot"
@@ -122,7 +122,7 @@ export default function FemaleImperialForm() {
             name="height_inches"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Height (in)</FormLabel>
+                <FormLabel className="">(in)</FormLabel>
                 <FormControl>
                   <Input placeholder="7" {...field} autoComplete="off" />
                 </FormControl>
