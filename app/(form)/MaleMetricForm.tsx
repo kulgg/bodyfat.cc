@@ -19,6 +19,8 @@ import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+
 import * as z from "zod";
 
 const formSchema = z.object({
@@ -41,6 +43,8 @@ const formSchema = z.object({
 });
 
 export default function MaleMetricForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { height: "", weight: "", neck: "", belly: "" },
@@ -71,16 +75,12 @@ export default function MaleMetricForm() {
         belly: toInches(parseFloat(values.belly)),
       },
     };
+
+    setHistory((prev) => [...prev, entry]);
+    router.push("/me");
     toast({
       title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
     });
-
-    setHistory((prev) => [...prev, entry]);
-
-    form.reset();
-
-    const element = document.getElementById("history");
-    element?.scrollIntoView();
   }
 
   return (

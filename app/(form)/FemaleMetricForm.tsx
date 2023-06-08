@@ -17,6 +17,7 @@ import { Entry, Sex } from "@/lib/model";
 import { toFeet, toInches, toPounds } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -45,6 +46,7 @@ const formSchema = z.object({
 });
 
 export default function FemaleMetricForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -82,16 +84,12 @@ export default function FemaleMetricForm() {
         hip: toInches(parseFloat(values.hip)),
       },
     };
+
+    setHistory((prev) => [...prev, entry]);
+    router.push("/me");
     toast({
       title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
     });
-
-    setHistory((prev) => [...prev, entry]);
-
-    form.reset();
-
-    const element = document.getElementById("history");
-    element?.scrollIntoView();
   }
 
   return (

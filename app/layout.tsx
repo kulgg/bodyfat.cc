@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "./Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -30,7 +31,8 @@ export default function RootLayout({
           inter.variable
         )}
       >
-        {children}
+        <Header />
+        <div className="max-w-[800px] mx-auto">{children}</div>
         <Toaster />
       </body>
     </html>

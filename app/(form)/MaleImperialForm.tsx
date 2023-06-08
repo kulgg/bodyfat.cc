@@ -18,6 +18,7 @@ import { footToCm, inchesToCm, poundsToKg } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -45,6 +46,7 @@ const formSchema = z.object({
 });
 
 export default function MaleImperialForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -82,16 +84,12 @@ export default function MaleImperialForm() {
         belly: parseFloat(values.belly),
       },
     };
+
+    setHistory((prev) => [...prev, entry]);
+    router.push("/me");
     toast({
       title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
     });
-
-    setHistory((prev) => [...prev, entry]);
-
-    form.reset();
-
-    const element = document.getElementById("history");
-    element?.scrollIntoView();
   }
 
   return (
