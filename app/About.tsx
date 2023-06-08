@@ -18,9 +18,7 @@ export function About() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" className="px-2 rounded-full">
-          <HelpCircle className="w-6 h-6" />
-        </Button>
+        <HelpCircle className="w-6 h-6 mx-1 cursor-pointer" />
       </SheetTrigger>
       <SheetContent position="right" size="content" className="overflow-y-auto">
         <SheetHeader>

@@ -10,7 +10,7 @@ function UnitSystemSwitch() {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
-    <div className="flex items-center space-x-2 scale-90">
+    <div className="flex items-center space-x-2 scale-90 -mr-1">
       <Switch
         id="unitSwitch"
         checked={unitSystem === "imperial"}
