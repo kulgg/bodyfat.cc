@@ -8,12 +8,17 @@ export default function Home() {
   return (
     <main className="">
       <div className="px-2 my-8 sm:my-16">
+        <div className="flex justify-end gap-2">
+          <Link href={"/me"}>
+            <Button
+              variant={"link"}
+              className=" text-slate-400 hover:text-slate-200 text-sm"
+            >
+              My History →
+            </Button>
+          </Link>
+        </div>
         <Forms />
-        <Link href={"/me"}>
-          <Button variant={"outline"} size="default" className="w-full">
-            My History →
-          </Button>
-        </Link>
       </div>
     </main>
   );
