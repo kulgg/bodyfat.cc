@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -58,9 +58,13 @@ export const options = {
 export default function App() {
   const [history, setHistory] = useAtom(historyAtom);
 
-  const validDataPoints = history
-    .filter((x) => getBodyfatResult(x) !== "Invalid")
-    .sort((a, b) => Date.parse(a.created) - Date.parse(b.created));
+  const validDataPoints = useMemo(
+    () =>
+      history
+        .filter((x) => getBodyfatResult(x) !== "Invalid")
+        .sort((a, b) => Date.parse(a.created) - Date.parse(b.created)),
+    [history]
+  );
 
   const stuff = {
     labels: validDataPoints.map((x) => formatDate(x.created)),
