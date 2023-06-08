@@ -82,7 +82,7 @@ export default function App() {
     <main className="px-2 my-8 sm:my-16">
       <History />
       <div className="my-20"></div>
-      <Line options={options} data={stuff} />
+      {history.length > 0 ? <Line options={options} data={stuff} /> : null}
     </main>
   );
 }
