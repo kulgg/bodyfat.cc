@@ -26,6 +26,7 @@ import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useMemo, useState } from "react";
 import { z } from "zod";
+import { FormsDictionary } from "../(form)/Forms";
 
 const schema = z.array(
   z.object({
@@ -52,7 +53,7 @@ const schema = z.array(
   })
 );
 
-function History() {
+function History({ dictionary }: { dictionary: FormsDictionary }) {
   const [history, setHistory] = useAtom(historyAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
   const { toast } = useToast();
@@ -125,9 +126,11 @@ function History() {
         <TableCaption>Measurements History.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Date</TableHead>
-            <TableHead className="whitespace-nowrap">Bodyfat (%)</TableHead>
-            <TableHead>Sex</TableHead>
+            <TableHead>{dictionary.date}</TableHead>
+            <TableHead className="whitespace-nowrap">
+              {dictionary.bodyfat}
+            </TableHead>
+            <TableHead>{dictionary.sex}</TableHead>
             <TableHead>
               {dictionary.height} ({isMetricSystem ? "cm" : "foot"})
             </TableHead>

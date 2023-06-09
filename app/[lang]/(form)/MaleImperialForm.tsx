@@ -95,7 +95,7 @@ export default function MaleImperialForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/me");
     toast({
-      title: `You have ${getBodyfatResult(entry)}% bodyfat!`,
+      title: `${dictionary.result_message} ${getBodyfatResult(entry)}%!`,
     });
   }
 

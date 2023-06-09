@@ -11,6 +11,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export interface FormsDictionary {
+  date: string;
+  bodyfat: string;
   sex: string;
   male: string;
   female: string;
@@ -28,6 +30,7 @@ export interface FormsDictionary {
     required: string;
     number: string;
   };
+  result_message: string;
 }
 
 function Forms({ dictionary }: { dictionary: FormsDictionary }) {

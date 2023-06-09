@@ -1,7 +1,9 @@
 {
   "landing": {
     "forms": {
-      "sex": "Geschlecht",
+      "date": "Datum",
+      "bodyfat": "KFA (%)",
+      "sex": "Geschl.",
       "male": "Männlich",
       "female": "Weiblich",
       "height": "Größe",
@@ -17,7 +19,8 @@
       "error_messages": {
         "required": "Erforderlich",
         "number": "Muss eine Zahl sein."
-      }
+      },
+      "result_message": "Ihr Körperfettanteil beträgt"
     },
     "history": "Verlauf"
   },
@@ -38,11 +41,11 @@
         "description": "Die Genauigkeit liegt innerhalb eines Fehlerbereichs von ~3 %. Damit ist die Approximation akurater als bei Waagen mit bioelektrischer Impedanz. Und alles, was Sie brauchen, ist ein Maßband."
       },
       "free": {
-        "title": "Ist diese App kostenlos?",
+        "title": "Ist die App kostenlos?",
         "description": "Ja, Sie können Ihren Körperfettanteil kostenlos messen und protokollieren."
       },
       "opensource": {
-        "title": "Ist das Open Source?",
+        "title": "Ist die App Open Source?",
         "description": "Ja, diese Webanwendung ist Open-Source unter MIT-Lizenz."
       }
     }

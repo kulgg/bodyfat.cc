@@ -1,6 +1,8 @@
 {
   "landing": {
     "forms": {
+      "date": "Date",
+      "bodyfat": "Body fat (%)",
       "sex": "Sex",
       "male": "Male",
       "female": "Female",
@@ -17,7 +19,8 @@
       "error_messages": {
         "required": "Required.",
         "number": "Must be a number."
-      }
+      },
+      "result_message": "Your bodyfat percentage is"
     },
     "history": "History"
   },
