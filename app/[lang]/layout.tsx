@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
-import Header from "../Header";
+import Header from "./Header";
 import { Locale, i18n } from "../../i18n-config";
 import { getDictionary } from "@/get-dictionary";
 

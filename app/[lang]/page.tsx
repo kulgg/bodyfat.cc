@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Forms from "../(form)/Forms";
-import History from "../(history)/History";
-import Header from "../Header";
+import Forms from "./(form)/Forms";
+import History from "./(history)/History";
+import Header from "./Header";
 import { Button } from "@/components/ui/button";
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";

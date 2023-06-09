@@ -14,7 +14,7 @@ import { Line } from "react-chartjs-2";
 import { useAtom } from "jotai";
 import { historyAtom } from "@/lib/atoms";
 import { formatDate, getBodyfat, getBodyfatResult } from "@/lib/utils";
-import History from "../../(history)/History";
+import History from "../(history)/History";
 
 ChartJS.register(
   CategoryScale,
