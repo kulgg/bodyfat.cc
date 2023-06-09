@@ -109,7 +109,12 @@ export default function FemaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.height} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="161" {...field} autoComplete="off" />
+                <Input
+                  placeholder="161"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -122,7 +127,12 @@ export default function FemaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.weight} (kg)</FormLabel>
               <FormControl>
-                <Input placeholder="70" {...field} autoComplete="off" />
+                <Input
+                  placeholder="70"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -135,7 +145,12 @@ export default function FemaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.neck} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="33" {...field} autoComplete="off" />
+                <Input
+                  placeholder="33"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
@@ -149,7 +164,12 @@ export default function FemaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.waist} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="71" {...field} autoComplete="off" />
+                <Input
+                  placeholder="71"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.waist_description}</FormDescription>
               <FormMessage />
@@ -163,7 +183,12 @@ export default function FemaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.hip} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="88" {...field} autoComplete="off" />
+                <Input
+                  placeholder="88"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.hip_description}</FormDescription>
               <FormMessage />

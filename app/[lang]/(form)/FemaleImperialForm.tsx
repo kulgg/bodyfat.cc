@@ -116,7 +116,12 @@ export default function FemaleImperialForm({
               <FormItem>
                 <FormLabel className="">{dictionary.height} (ft)</FormLabel>
                 <FormControl>
-                  <Input placeholder="5" {...field} autoComplete="off" />
+                  <Input
+                    placeholder="5"
+                    {...field}
+                    autoComplete="off"
+                    type="number"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -129,7 +134,12 @@ export default function FemaleImperialForm({
               <FormItem>
                 <FormLabel className="">(in)</FormLabel>
                 <FormControl>
-                  <Input placeholder="7" {...field} autoComplete="off" />
+                  <Input
+                    placeholder="7"
+                    {...field}
+                    autoComplete="off"
+                    type="number"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -143,7 +153,12 @@ export default function FemaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.weight} (lb)</FormLabel>
               <FormControl>
-                <Input placeholder="70" {...field} autoComplete="off" />
+                <Input
+                  placeholder="70"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -156,7 +171,12 @@ export default function FemaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.neck} (in)</FormLabel>
               <FormControl>
-                <Input placeholder="33" {...field} autoComplete="off" />
+                <Input
+                  placeholder="33"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
@@ -170,7 +190,12 @@ export default function FemaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.waist} (in)</FormLabel>
               <FormControl>
-                <Input placeholder="71" {...field} autoComplete="off" />
+                <Input
+                  placeholder="71"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.waist_description}</FormDescription>
               <FormMessage />
@@ -184,7 +209,12 @@ export default function FemaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.hip} (in)</FormLabel>
               <FormControl>
-                <Input placeholder="88" {...field} autoComplete="off" />
+                <Input
+                  placeholder="88"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.hip_description}</FormDescription>
               <FormMessage />

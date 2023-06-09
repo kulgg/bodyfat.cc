@@ -110,7 +110,12 @@ export default function MaleImperialForm({
               <FormItem>
                 <FormLabel className="">{dictionary.height} (ft)</FormLabel>
                 <FormControl>
-                  <Input placeholder="5" {...field} autoComplete="off" />
+                  <Input
+                    placeholder="5"
+                    {...field}
+                    autoComplete="off"
+                    type="number"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -123,7 +128,12 @@ export default function MaleImperialForm({
               <FormItem>
                 <FormLabel className="">(in)</FormLabel>
                 <FormControl>
-                  <Input placeholder="7" {...field} autoComplete="off" />
+                  <Input
+                    placeholder="7"
+                    {...field}
+                    autoComplete="off"
+                    type="number"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -137,7 +147,12 @@ export default function MaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.weight} (lb)</FormLabel>
               <FormControl>
-                <Input placeholder="75" {...field} autoComplete="off" />
+                <Input
+                  placeholder="75"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -150,7 +165,12 @@ export default function MaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.neck} (in)</FormLabel>
               <FormControl>
-                <Input placeholder="33" {...field} autoComplete="off" />
+                <Input
+                  placeholder="33"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
@@ -164,7 +184,12 @@ export default function MaleImperialForm({
             <FormItem>
               <FormLabel>{dictionary.belly} (in)</FormLabel>
               <FormControl>
-                <Input placeholder="85" {...field} autoComplete="off" />
+                <Input
+                  placeholder="85"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>
                 Measure the waist circumference at the belly button. Hold the

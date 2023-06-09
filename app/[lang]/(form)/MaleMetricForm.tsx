@@ -99,7 +99,12 @@ export default function MaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.height} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="177" {...field} autoComplete="off" />
+                <Input
+                  placeholder="177"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -112,7 +117,12 @@ export default function MaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.weight} (kg)</FormLabel>
               <FormControl>
-                <Input placeholder="75" {...field} autoComplete="off" />
+                <Input
+                  placeholder="75"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -125,7 +135,12 @@ export default function MaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.neck} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="33" {...field} autoComplete="off" />
+                <Input
+                  placeholder="33"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
@@ -139,7 +154,12 @@ export default function MaleMetricForm({
             <FormItem>
               <FormLabel>{dictionary.belly} (cm)</FormLabel>
               <FormControl>
-                <Input placeholder="85" {...field} autoComplete="off" />
+                <Input
+                  placeholder="85"
+                  {...field}
+                  autoComplete="off"
+                  type="number"
+                />
               </FormControl>
               <FormDescription>
                 Measure the waist circumference at the belly button. Hold the
