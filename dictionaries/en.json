@@ -23,6 +23,28 @@
   },
   "header": {
     "metric": "Metric",
-    "imperial": "Imperial"
+    "imperial": "Imperial",
+    "about": {
+      "formula": {
+        "title": "How does this bodyfat calculator work?",
+        "description": "The body fat percentage (BFP) is estimated by using the US Navy method, which utilizes height and circumferences at different body positions. The formula and measurement positions differ for males and females."
+      },
+      "privacy": {
+        "title": "What happens to my data?",
+        "description": "The data you enter never leaves your device. It is saved locally inside of your browser."
+      },
+      "accuracy": {
+        "title": "How accurate is this method?",
+        "description": "It is reported to be accurate within a ~3% error range. This makes it significantly more accurate than scales with bioelectrical impedance. And all you need is a measuring tape."
+      },
+      "free": {
+        "title": "Is this app free?",
+        "description": "Yes you can measure and keep history of your bodyfat percentage for free."
+      },
+      "opensource": {
+        "title": "Is this open source?",
+        "description": "Yes, this web application is open-sourced under MIT license."
+      }
+    }
   }
 }

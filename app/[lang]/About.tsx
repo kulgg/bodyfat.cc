@@ -11,8 +11,9 @@ import {
 import { unitSystemAtom } from "@/lib/atoms";
 import { useAtom } from "jotai";
 import { HelpCircle } from "lucide-react";
+import { HeaderDictionary } from "./Header";
 
-export function About() {
+export function About({ dictionary }: { dictionary: HeaderDictionary }) {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
@@ -22,13 +23,10 @@ export function About() {
       </SheetTrigger>
       <SheetContent position="right" size="content" className="overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>How does this bodyfat calculator work?</SheetTitle>
+          <SheetTitle>{dictionary.about.formula.title}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          The body fat percentage (BFP) is estimated by using the US Navy
-          method, which utilizes height and circumferences at different body
-          positions. The formula and measurement positions differ for males and
-          females.
+          {dictionary.about.formula.description}
           <div className="my-4"></div>
           {unitSystem === "metric" ? (
             <div>
@@ -60,35 +58,31 @@ export function About() {
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>What happens to my data?</SheetTitle>
+          <SheetTitle>{dictionary.about.privacy.title}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          The data you enter never leaves your device. It is saved locally
-          inside of your browser.
+          {dictionary.about.privacy.description}
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>How accurate is this method?</SheetTitle>
+          <SheetTitle>{dictionary.about.accuracy.title}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          It is reported to be accurate within a ~3% error range. This makes it
-          significantly more accurate than scales with bioelectrical impedance.
-          And all you need is a measuring tape.
+          {dictionary.about.accuracy.description}
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>Is this app free?</SheetTitle>
+          <SheetTitle>{dictionary.about.free.title}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          Yes you can measure and keep history of your bodyfat percentage for
-          free.
+          {dictionary.about.free.description}
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>Is this open source?</SheetTitle>
+          <SheetTitle>{dictionary.about.opensource.title}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          Yes, this web application is open-sourced under MIT license.
+          {dictionary.about.opensource.description}
         </div>
         <SheetFooter></SheetFooter>
       </SheetContent>

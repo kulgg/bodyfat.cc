@@ -6,6 +6,28 @@ import UnitSystemSwitch from "./UnitSystemSwitch";
 export interface HeaderDictionary {
   metric: string;
   imperial: string;
+  about: {
+    formula: {
+      title: string;
+      description: string;
+    };
+    privacy: {
+      title: string;
+      description: string;
+    };
+    accuracy: {
+      title: string;
+      description: string;
+    };
+    free: {
+      title: string;
+      description: string;
+    };
+    opensource: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 function Header({ dictionary }: { dictionary: HeaderDictionary }) {
@@ -17,7 +39,7 @@ function Header({ dictionary }: { dictionary: HeaderDictionary }) {
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
           <UnitSystemSwitch dictionary={dictionary} />
-          <About />
+          <About dictionary={dictionary} />
           <a href="https://github.com/kulgg/bodyfat.io" target="_blank">
             <Icons.gitHub className="w-5 h-5" />
           </a>

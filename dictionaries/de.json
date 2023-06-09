@@ -23,6 +23,28 @@
   },
   "header": {
     "metric": "Metrisch",
-    "imperial": "Imperial"
+    "imperial": "Imperial",
+    "about": {
+      "formula": {
+        "title": "Wie funktioniert dieser Körperfettrechner?",
+        "description": "Der Körperfettanteil (KFA) wird mithilfe der US-Navy-Methode geschätzt, welche die Körpergröße und den Umfang an verschiedenen Stellen des Körpers berücksichtigt. Die Formel und Messpositionen unterscheiden sich für Männer und Frauen."
+      },
+      "privacy": {
+        "title": "Was passiert mit meinen Daten?",
+        "description": "Die von Ihnen eingegebenen Daten verlassen niemals das Gerät. Alles wird lokal im Browser gespeichert."
+      },
+      "accuracy": {
+        "title": "Wie genau ist diese Methode?",
+        "description": "Die Genauigkeit liegt innerhalb eines Fehlerbereichs von ~3 %. Damit ist die Approximation akurater als bei Waagen mit bioelektrischer Impedanz. Und alles, was Sie brauchen, ist ein Maßband."
+      },
+      "free": {
+        "title": "Ist diese App kostenlos?",
+        "description": "Ja, Sie können Ihren Körperfettanteil kostenlos messen und protokollieren."
+      },
+      "opensource": {
+        "title": "Ist das Open Source?",
+        "description": "Ja, diese Webanwendung ist Open-Source unter MIT-Lizenz."
+      }
+    }
   }
 }
