@@ -1,9 +1,28 @@
 {
-  "server-component": {
-    "welcome": "Welcome"
+  "landing": {
+    "forms": {
+      "sex": "Sex",
+      "male": "Male",
+      "female": "Female",
+      "height": "Height",
+      "weight": "Weight",
+      "neck": "Neck",
+      "belly": "Belly",
+      "waist": "Waist",
+      "hip": "Hip",
+      "cta": "Calculate body fat percentage",
+      "neck_description": "Measure the neck circumference just below the larynx while looking straight ahead.",
+      "waist_description": "Measure the waist circumference at the smallest part of the waist. Hold the tape parallel to the floor.",
+      "hip_description": "Measure the hip circumference at the biggest part of the rear end. Hold the tape parallel to the floor.",
+      "error_messages": {
+        "required": "Required.",
+        "number": "Must be a number."
+      }
+    },
+    "history": "History"
   },
-  "counter": {
-    "increment": "Increment",
-    "decrement": "Decrement"
+  "header": {
+    "metric": "Metric",
+    "imperial": "Imperial"
   }
 }

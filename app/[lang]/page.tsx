@@ -3,8 +3,16 @@ import Forms from "../(form)/Forms";
 import History from "../(history)/History";
 import Header from "../Header";
 import { Button } from "@/components/ui/button";
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "@/i18n-config";
 
-export default function Home() {
+export default async function Home({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const dictionary = await getDictionary(lang);
+
   return (
     <main className="">
       <div className="px-2 my-8 sm:my-16">
@@ -14,11 +22,11 @@ export default function Home() {
               variant={"link"}
               className=" text-slate-400 hover:text-slate-200 text-sm"
             >
-              My History →
+              {dictionary.landing.history} →
             </Button>
           </Link>
         </div>
-        <Forms />
+        <Forms dictionary={dictionary.landing.forms} />
       </div>
     </main>
   );

@@ -4,7 +4,8 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
 import Header from "../Header";
-import { i18n } from "../../i18n-config";
+import { Locale, i18n } from "../../i18n-config";
+import { getDictionary } from "@/get-dictionary";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -18,17 +19,19 @@ const clash = localFont({
 });
 
 export const metadata = {
-  title: "Calculate bodyfat percentage | bodyfat.io",
+  title: "{dictionary.cta} | bodyfat.io",
   description: "Yoyoyo",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: { lang: Locale };
 }) {
+  const dictionary = await getDictionary(params.lang);
+
   return (
     <html lang={params.lang} className="scroll-smooth">
       <body
@@ -38,7 +41,7 @@ export default function RootLayout({
           inter.variable
         )}
       >
-        <Header />
+        <Header dictionary={dictionary.header} />
         <div className="max-w-[800px] mx-auto">{children}</div>
         <Toaster />
       </body>

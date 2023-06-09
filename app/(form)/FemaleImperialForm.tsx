@@ -21,38 +21,45 @@ import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import * as z from "zod";
+import { FormsDictionary } from "./Forms";
 
-const formSchema = z.object({
-  height_foot: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+$/, { message: "Height must be a number." }),
-  height_inches: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+$/, { message: "Height must be a number." }),
-  weight: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Weight must be a number." }),
-  neck: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Neck must be a number." }),
-  waist: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Waist must be a number." }),
-  hip: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Hip must be a number." }),
-});
+const formSchema = (dictionary: FormsDictionary) =>
+  z.object({
+    height_foot: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+$/, { message: dictionary.error_messages.number }),
+    height_inches: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+$/, { message: dictionary.error_messages.number }),
+    weight: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    neck: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    waist: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    hip: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+  });
 
-export default function FemaleImperialForm() {
+export default function FemaleImperialForm({
+  dictionary,
+}: {
+  dictionary: FormsDictionary;
+}) {
   const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const schema = formSchema(dictionary);
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
     defaultValues: {
       height_foot: "",
       height_inches: "",
@@ -66,7 +73,7 @@ export default function FemaleImperialForm() {
 
   const [history, setHistory] = useAtom(historyAtom);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof schema>) {
     const entry: Entry = {
       created: new Date().toISOString(),
       metric_measurement: {
@@ -107,7 +114,7 @@ export default function FemaleImperialForm() {
             name="height_foot"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Height (ft)</FormLabel>
+                <FormLabel className="">{dictionary.height} (ft)</FormLabel>
                 <FormControl>
                   <Input placeholder="5" {...field} autoComplete="off" />
                 </FormControl>
@@ -134,7 +141,7 @@ export default function FemaleImperialForm() {
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (lb)</FormLabel>
+              <FormLabel>{dictionary.weight} (lb)</FormLabel>
               <FormControl>
                 <Input placeholder="70" {...field} autoComplete="off" />
               </FormControl>
@@ -147,14 +154,11 @@ export default function FemaleImperialForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (in)</FormLabel>
+              <FormLabel>{dictionary.neck} (in)</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the neck circumference just below the larynx while
-                looking straight ahead.
-              </FormDescription>
+              <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -164,14 +168,11 @@ export default function FemaleImperialForm() {
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Waist (in)</FormLabel>
+              <FormLabel>{dictionary.waist} (in)</FormLabel>
               <FormControl>
                 <Input placeholder="71" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the waist circumference at the smallest part of the
-                waist. Hold the tape parallel to the floor.
-              </FormDescription>
+              <FormDescription>{dictionary.waist_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -181,20 +182,17 @@ export default function FemaleImperialForm() {
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Hip (in)</FormLabel>
+              <FormLabel>{dictionary.hip} (in)</FormLabel>
               <FormControl>
                 <Input placeholder="88" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the hip circumference at the biggest part of the rear
-                end. Hold the tape parallel to the floor.
-              </FormDescription>
+              <FormDescription>{dictionary.hip_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          Calculate Bodyfat Percentage
+          {dictionary.cta}
         </Button>
       </form>
     </Form>

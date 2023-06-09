@@ -128,12 +128,24 @@ function History() {
             <TableHead>Date</TableHead>
             <TableHead className="whitespace-nowrap">Bodyfat (%)</TableHead>
             <TableHead>Sex</TableHead>
-            <TableHead>Height ({isMetricSystem ? "cm" : "foot"})</TableHead>
-            <TableHead>Weight ({isMetricSystem ? "kg" : "lb"})</TableHead>
-            <TableHead>Neck ({isMetricSystem ? "cm" : "in"})</TableHead>
-            <TableHead>Belly ({isMetricSystem ? "cm" : "in"})</TableHead>
-            <TableHead>Waist ({isMetricSystem ? "cm" : "in"})</TableHead>
-            <TableHead>Hip ({isMetricSystem ? "cm" : "in"})</TableHead>
+            <TableHead>
+              {dictionary.height} ({isMetricSystem ? "cm" : "foot"})
+            </TableHead>
+            <TableHead>
+              {dictionary.weight} ({isMetricSystem ? "kg" : "lb"})
+            </TableHead>
+            <TableHead>
+              {dictionary.neck} ({isMetricSystem ? "cm" : "in"})
+            </TableHead>
+            <TableHead>
+              {dictionary.belly} ({isMetricSystem ? "cm" : "in"})
+            </TableHead>
+            <TableHead>
+              {dictionary.waist} ({isMetricSystem ? "cm" : "in"})
+            </TableHead>
+            <TableHead>
+              {dictionary.hip} ({isMetricSystem ? "cm" : "in"})
+            </TableHead>
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>

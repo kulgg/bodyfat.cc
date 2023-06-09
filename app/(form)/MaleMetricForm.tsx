@@ -22,31 +22,37 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import * as z from "zod";
+import { FormsDictionary } from "./Forms";
 
-const formSchema = z.object({
-  height: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Height must be a number." }),
-  weight: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Weight must be a number." }),
-  neck: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Neck must be a number." }),
-  belly: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Belly must be a number." }),
-});
+const getFormSchema = (dictionary: FormsDictionary) =>
+  z.object({
+    height: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    weight: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    neck: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    belly: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+  });
 
-export default function MaleMetricForm() {
+export default function MaleMetricForm({
+  dictionary,
+}: {
+  dictionary: FormsDictionary;
+}) {
   const router = useRouter();
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const schema = getFormSchema(dictionary);
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
     defaultValues: { height: "", weight: "", neck: "", belly: "" },
   });
 
@@ -54,7 +60,7 @@ export default function MaleMetricForm() {
 
   const { toast } = useToast();
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof schema>) {
     const imperialHeight = toFeet(parseFloat(values.height));
 
     const entry: Entry = {
@@ -91,7 +97,7 @@ export default function MaleMetricForm() {
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Height (cm)</FormLabel>
+              <FormLabel>{dictionary.height} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="177" {...field} autoComplete="off" />
               </FormControl>
@@ -104,7 +110,7 @@ export default function MaleMetricForm() {
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (kg)</FormLabel>
+              <FormLabel>{dictionary.weight} (kg)</FormLabel>
               <FormControl>
                 <Input placeholder="75" {...field} autoComplete="off" />
               </FormControl>
@@ -117,14 +123,11 @@ export default function MaleMetricForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (cm)</FormLabel>
+              <FormLabel>{dictionary.neck} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the neck circumference just below the larynx while
-                looking straight ahead.
-              </FormDescription>
+              <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -134,7 +137,7 @@ export default function MaleMetricForm() {
           name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Belly (cm)</FormLabel>
+              <FormLabel>{dictionary.belly} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="85" {...field} autoComplete="off" />
               </FormControl>
@@ -147,7 +150,7 @@ export default function MaleMetricForm() {
           )}
         />
         <Button type="submit" className="w-full">
-          Calculate Bodyfat Percentage
+          {dictionary.cta}
         </Button>
       </form>
     </Form>

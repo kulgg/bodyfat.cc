@@ -21,32 +21,39 @@ import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { FormsDictionary } from "./Forms";
 
-const formSchema = z.object({
-  height: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Height must be a number." }),
-  weight: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Weight must be a number." }),
-  neck: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Neck must be a number." }),
-  waist: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Waist must be a number." }),
-  hip: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Hip must be a number." }),
-});
+export const getFormSchema = (dictionary: FormsDictionary) =>
+  z.object({
+    height: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    weight: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    neck: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    waist: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    hip: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+  });
 
-export default function FemaleMetricForm() {
+export default function FemaleMetricForm({
+  dictionary,
+}: {
+  dictionary: FormsDictionary;
+}) {
   const router = useRouter();
+  const formSchema = getFormSchema(dictionary);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -100,7 +107,7 @@ export default function FemaleMetricForm() {
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Height (cm)</FormLabel>
+              <FormLabel>{dictionary.height} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="161" {...field} autoComplete="off" />
               </FormControl>
@@ -113,7 +120,7 @@ export default function FemaleMetricForm() {
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (kg)</FormLabel>
+              <FormLabel>{dictionary.weight} (kg)</FormLabel>
               <FormControl>
                 <Input placeholder="70" {...field} autoComplete="off" />
               </FormControl>
@@ -126,14 +133,11 @@ export default function FemaleMetricForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (cm)</FormLabel>
+              <FormLabel>{dictionary.neck} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the neck circumference just below the larynx while
-                looking straight ahead.
-              </FormDescription>
+              <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -143,14 +147,11 @@ export default function FemaleMetricForm() {
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Waist (cm)</FormLabel>
+              <FormLabel>{dictionary.waist} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="71" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the waist circumference at the smallest part of the
-                waist. Hold the tape parallel to the floor.
-              </FormDescription>
+              <FormDescription>{dictionary.waist_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -160,20 +161,17 @@ export default function FemaleMetricForm() {
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Hip (cm)</FormLabel>
+              <FormLabel>{dictionary.hip} (cm)</FormLabel>
               <FormControl>
                 <Input placeholder="88" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the hip circumference at the biggest part of the rear
-                end. Hold the tape parallel to the floor.
-              </FormDescription>
+              <FormDescription>{dictionary.hip_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          Calculate Bodyfat Percentage
+          {dictionary.cta}
         </Button>
       </form>
     </Form>

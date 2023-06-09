@@ -21,32 +21,39 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { FormsDictionary } from "./Forms";
 
-const formSchema = z.object({
-  height_foot: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+$/, { message: "Height must be a number." }),
-  height_inches: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+$/, { message: "Height must be a number." }),
-  weight: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Weight must be a number." }),
-  neck: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Neck must be a number." }),
-  belly: z
-    .string()
-    .min(1, { message: "Required." })
-    .regex(/^\d+\.?\d*$/, { message: "Belly must be a number." }),
-});
+const getFormSchema = (dictionary: FormsDictionary) =>
+  z.object({
+    height_foot: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+$/, { message: dictionary.error_messages.number }),
+    height_inches: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+$/, { message: dictionary.error_messages.number }),
+    weight: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    neck: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+    belly: z
+      .string()
+      .min(1, { message: dictionary.error_messages.required })
+      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+  });
 
-export default function MaleImperialForm() {
+export default function MaleImperialForm({
+  dictionary,
+}: {
+  dictionary: FormsDictionary;
+}) {
   const router = useRouter();
+  const formSchema = getFormSchema(dictionary);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -101,7 +108,7 @@ export default function MaleImperialForm() {
             name="height_foot"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Height (ft)</FormLabel>
+                <FormLabel className="">{dictionary.height} (ft)</FormLabel>
                 <FormControl>
                   <Input placeholder="5" {...field} autoComplete="off" />
                 </FormControl>
@@ -128,7 +135,7 @@ export default function MaleImperialForm() {
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weight (lb)</FormLabel>
+              <FormLabel>{dictionary.weight} (lb)</FormLabel>
               <FormControl>
                 <Input placeholder="75" {...field} autoComplete="off" />
               </FormControl>
@@ -141,14 +148,11 @@ export default function MaleImperialForm() {
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Neck (in)</FormLabel>
+              <FormLabel>{dictionary.neck} (in)</FormLabel>
               <FormControl>
                 <Input placeholder="33" {...field} autoComplete="off" />
               </FormControl>
-              <FormDescription>
-                Measure the neck circumference just below the larynx while
-                looking straight ahead.
-              </FormDescription>
+              <FormDescription>{dictionary.neck_description}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -158,7 +162,7 @@ export default function MaleImperialForm() {
           name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Belly (in)</FormLabel>
+              <FormLabel>{dictionary.belly} (in)</FormLabel>
               <FormControl>
                 <Input placeholder="85" {...field} autoComplete="off" />
               </FormControl>
@@ -171,7 +175,7 @@ export default function MaleImperialForm() {
           )}
         />
         <Button type="submit" className="w-full">
-          Calculate Bodyfat Percentage
+          {dictionary.cta}
         </Button>
       </form>
     </Form>

@@ -5,8 +5,9 @@ import { Switch } from "@/components/ui/switch";
 import { unitSystemAtom } from "@/lib/atoms";
 import { capitalize } from "@/lib/utils";
 import { useAtom } from "jotai";
+import { HeaderDictionary } from "./Header";
 
-function UnitSystemSwitch() {
+function UnitSystemSwitch({ dictionary }: { dictionary: HeaderDictionary }) {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
@@ -19,7 +20,7 @@ function UnitSystemSwitch() {
         }
       />
       <Label htmlFor="unitSwitch" className="">
-        {capitalize(unitSystem)}
+        {capitalize(dictionary[unitSystem])}
       </Label>
     </div>
   );

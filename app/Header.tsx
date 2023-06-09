@@ -3,7 +3,12 @@ import Link from "next/link";
 import { About } from "./About";
 import UnitSystemSwitch from "./UnitSystemSwitch";
 
-function Header() {
+export interface HeaderDictionary {
+  metric: string;
+  imperial: string;
+}
+
+function Header({ dictionary }: { dictionary: HeaderDictionary }) {
   return (
     <header className="h-16 border-b border-b-slate-800 flex flex-col justify-center max-w-4xl mx-auto px-1">
       <div className="justify-between flex items-center">
@@ -11,7 +16,7 @@ function Header() {
           <h1 className="text-3xl font-display">bodyfat.io</h1>
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
-          <UnitSystemSwitch />
+          <UnitSystemSwitch dictionary={dictionary} />
           <About />
           <a href="https://github.com/kulgg/bodyfat.io" target="_blank">
             <Icons.gitHub className="w-5 h-5" />

@@ -1,9 +1,28 @@
 {
-  "server-component": {
-    "welcome": "Willkommen"
+  "landing": {
+    "forms": {
+      "sex": "Geschlecht",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "height": "Größe",
+      "weight": "Gewicht",
+      "neck": "Nacken",
+      "belly": "Bauch",
+      "waist": "Taille",
+      "hip": "Hüfte",
+      "cta": "Körperfettanteil berechnen",
+      "neck_description": "Messen Sie den Halsumfang direkt unterhalb des Kehlkopfes und schauen Sie dabei geradeaus.",
+      "waist_description": "Messen Sie den Taillenumfang an der schmalsten Stelle der Taille. Halten Sie das Messband parallel zum Boden.",
+      "hip_description": "Messen Sie den Hüftumfang an der größten Stelle des Hinterns. Halten Sie das Messband parallel zum Boden.",
+      "error_messages": {
+        "required": "Erforderlich",
+        "number": "Muss eine Zahl sein."
+      }
+    },
+    "history": "Verlauf"
   },
-  "counter": {
-    "increment": "Zuwachs",
-    "decrement": "Dekrementieren"
+  "header": {
+    "metric": "Metrisch",
+    "imperial": "Imperial"
   }
 }

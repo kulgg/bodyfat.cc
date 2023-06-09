@@ -10,7 +10,27 @@ import MaleMetricForm from "./MaleMetricForm";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-function Forms() {
+export interface FormsDictionary {
+  sex: string;
+  male: string;
+  female: string;
+  height: string;
+  weight: string;
+  neck: string;
+  belly: string;
+  waist: string;
+  hip: string;
+  cta: string;
+  neck_description: string;
+  waist_description: string;
+  hip_description: string;
+  error_messages: {
+    required: string;
+    number: string;
+  };
+}
+
+function Forms({ dictionary }: { dictionary: FormsDictionary }) {
   const [sexSelection, setSexSelection] = useAtom(sexSelectionAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
@@ -26,7 +46,7 @@ function Forms() {
           >
             <RadioGroupItem value="Male" id="Male" />
             <Label htmlFor="Male" className="cursor-pointer">
-              Male
+              {dictionary.male}
             </Label>
           </div>
           <div
@@ -35,20 +55,20 @@ function Forms() {
           >
             <RadioGroupItem value="Female" id="Female" />
             <Label htmlFor="Female" className="cursor-pointer">
-              Female
+              {dictionary.female}
             </Label>
           </div>
         </RadioGroup>
         {sexSelection === "Male" ? (
           unitSystem === "metric" ? (
-            <MaleMetricForm />
+            <MaleMetricForm dictionary={dictionary} />
           ) : (
-            <MaleImperialForm />
+            <MaleImperialForm dictionary={dictionary} />
           )
         ) : unitSystem === "metric" ? (
-          <FemaleMetricForm />
+          <FemaleMetricForm dictionary={dictionary} />
         ) : (
-          <FemaleImperialForm />
+          <FemaleImperialForm dictionary={dictionary} />
         )}
       </div>
     </div>
