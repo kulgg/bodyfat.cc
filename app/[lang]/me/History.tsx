@@ -24,7 +24,7 @@ import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
 
 const schema = z.array(

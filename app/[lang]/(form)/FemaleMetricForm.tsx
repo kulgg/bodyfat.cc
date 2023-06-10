@@ -17,8 +17,8 @@ import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { toFeet, toInches, toPounds } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 

@@ -1,18 +1,7 @@
-import React, { useMemo } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import History from "../(history)/History";
-import { Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
+import { Locale } from "@/i18n-config";
 import Chart from "./Chart";
+import History from "./History";
 
 export default async function App({ params }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(params.lang);

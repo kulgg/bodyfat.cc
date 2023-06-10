@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -9,9 +8,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { unitSystemAtom } from "@/lib/atoms";
+import { LocaleDictionary } from "@/lib/model";
 import { useAtom } from "jotai";
 import { HelpCircle } from "lucide-react";
-import { LocaleDictionary } from "@/lib/model";
 
 export function About({ dictionary }: { dictionary: LocaleDictionary }) {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);

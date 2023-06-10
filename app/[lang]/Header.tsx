@@ -1,8 +1,8 @@
 import { Icons } from "@/components/ui/icons";
+import { LocaleDictionary } from "@/lib/model";
 import Link from "next/link";
 import { About } from "./About";
 import UnitSystemSwitch from "./UnitSystemSwitch";
-import { LocaleDictionary } from "@/lib/model";
 
 function Header({ dictionary }: { dictionary: LocaleDictionary }) {
   return (

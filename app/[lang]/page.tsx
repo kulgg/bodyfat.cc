@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Forms from "./(form)/Forms";
 import { Button } from "@/components/ui/button";
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
+import Link from "next/link";
 import Balancer from "react-wrap-balancer";
+import Forms from "./(form)/Forms";
 
 export default async function Home({
   params: { lang },

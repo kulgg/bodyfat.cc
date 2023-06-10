@@ -1,11 +1,11 @@
 import { Toaster } from "@/components/ui/toaster";
+import { getDictionary } from "@/get-dictionary";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { Locale, i18n } from "../../i18n-config";
 import "../globals.css";
 import Header from "./Header";
-import { Locale, i18n } from "../../i18n-config";
-import { getDictionary } from "@/get-dictionary";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
