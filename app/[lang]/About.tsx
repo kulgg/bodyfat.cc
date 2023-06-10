@@ -29,15 +29,19 @@ export function About({ dictionary }: { dictionary: LocaleDictionary }) {
           <div className="my-4"></div>
           {unitSystem === "metric" ? (
             <div>
-              Male Formula
+              {dictionary.general.male}
               <div className="italic text-sm text-amber-300 bg-slate-800">
-                BFP = 86.01 * log10(belly - neck) - 70.041 * log10(height) +
-                30.3
+                {dictionary.general.bodyfat} = 86.01 * log10(
+                {dictionary.general.belly} - {dictionary.general.neck}) - 70.041
+                * log10(
+                {dictionary.general.height}) + 30.3
               </div>
-              Female Formula
+              {dictionary.general.female}
               <div className="italic text-sm text-amber-300 bg-slate-800">
-                BFP = 163.205 * log10(waist + hip - neck) - 97.684 *
-                log10(height) - 104.912
+                {dictionary.general.bodyfat} = 163.205 * log10(
+                {dictionary.general.waist} + {dictionary.general.hip} -{" "}
+                {dictionary.general.neck}) - 97.684 * log10(
+                {dictionary.general.height}) - 104.912
               </div>
             </div>
           ) : (
