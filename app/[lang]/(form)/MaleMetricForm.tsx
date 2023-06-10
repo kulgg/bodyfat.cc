@@ -90,7 +90,7 @@ export default function MaleMetricForm({
     };
 
     setHistory((prev) => [...prev, entry]);
-    router.push("/me");
+    router.push("/history");
     toast({
       title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
     });
