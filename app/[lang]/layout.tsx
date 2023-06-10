@@ -18,10 +18,21 @@ const clash = localFont({
   variable: "--font-clash",
 });
 
-export const metadata = {
-  title: "{dictionary.cta} | bodyfat.io",
-  description: "Yoyoyo",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: Locale };
+}) {
+  const dictionary = await getDictionary(params.lang);
+
+  return {
+    title: {
+      template: "%s | bodyfat.io",
+      default: `${dictionary.title} | bodyfat.io`,
+    },
+    description: dictionary.description,
+  };
+}
 
 export default async function RootLayout({
   children,

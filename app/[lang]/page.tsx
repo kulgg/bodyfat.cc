@@ -16,6 +16,9 @@ export default async function Home({
   return (
     <main className="">
       <div className="px-2 my-8 sm:my-16">
+        <h1 className="text-2xl my-4 tracking-tight text-center">
+          {dictionary.title}
+        </h1>
         <div className="flex justify-end gap-2">
           <Link href={"/me"}>
             <Button
