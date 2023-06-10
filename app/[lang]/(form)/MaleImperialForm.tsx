@@ -129,7 +129,7 @@ export default function MaleImperialForm({
                 <FormLabel className="">(in)</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="7"
+                    placeholder="11"
                     {...field}
                     autoComplete="off"
                     type="number"
@@ -148,10 +148,11 @@ export default function MaleImperialForm({
               <FormLabel>{dictionary.weight} (lb)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="75"
+                  placeholder="172"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormMessage />
@@ -166,10 +167,11 @@ export default function MaleImperialForm({
               <FormLabel>{dictionary.neck} (in)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="33"
+                  placeholder="14.2"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
@@ -185,10 +187,11 @@ export default function MaleImperialForm({
               <FormLabel>{dictionary.belly} (in)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="85"
+                  placeholder="32.3"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>

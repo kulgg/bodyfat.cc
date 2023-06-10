@@ -100,10 +100,11 @@ export default function MaleMetricForm({
               <FormLabel>{dictionary.height} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="177"
+                  placeholder="180"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormMessage />
@@ -118,10 +119,11 @@ export default function MaleMetricForm({
               <FormLabel>{dictionary.weight} (kg)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="75"
+                  placeholder="78"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormMessage />
@@ -136,10 +138,11 @@ export default function MaleMetricForm({
               <FormLabel>{dictionary.neck} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="33"
+                  placeholder="36"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
@@ -155,10 +158,11 @@ export default function MaleMetricForm({
               <FormLabel>{dictionary.belly} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="85"
+                  placeholder="82"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>

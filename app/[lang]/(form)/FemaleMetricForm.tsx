@@ -110,10 +110,11 @@ export default function FemaleMetricForm({
               <FormLabel>{dictionary.height} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="161"
+                  placeholder="167"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormMessage />
@@ -128,10 +129,11 @@ export default function FemaleMetricForm({
               <FormLabel>{dictionary.weight} (kg)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="70"
+                  placeholder="63"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormMessage />
@@ -146,10 +148,11 @@ export default function FemaleMetricForm({
               <FormLabel>{dictionary.neck} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="33"
+                  placeholder="34.2"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
@@ -165,10 +168,11 @@ export default function FemaleMetricForm({
               <FormLabel>{dictionary.waist} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="71"
+                  placeholder="80.5"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.waist_description}</FormDescription>
@@ -184,10 +188,11 @@ export default function FemaleMetricForm({
               <FormLabel>{dictionary.hip} (cm)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="88"
+                  placeholder="95"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.hip_description}</FormDescription>

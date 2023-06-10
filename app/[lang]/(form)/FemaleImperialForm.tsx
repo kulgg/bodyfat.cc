@@ -135,7 +135,7 @@ export default function FemaleImperialForm({
                 <FormLabel className="">(in)</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="7"
+                    placeholder="6"
                     {...field}
                     autoComplete="off"
                     type="number"
@@ -154,10 +154,11 @@ export default function FemaleImperialForm({
               <FormLabel>{dictionary.weight} (lb)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="70"
+                  placeholder="139"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormMessage />
@@ -172,10 +173,11 @@ export default function FemaleImperialForm({
               <FormLabel>{dictionary.neck} (in)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="33"
+                  placeholder="13.5"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.neck_description}</FormDescription>
@@ -191,10 +193,11 @@ export default function FemaleImperialForm({
               <FormLabel>{dictionary.waist} (in)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="71"
+                  placeholder="31.7"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.waist_description}</FormDescription>
@@ -210,10 +213,11 @@ export default function FemaleImperialForm({
               <FormLabel>{dictionary.hip} (in)</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="88"
+                  placeholder="37.4"
                   {...field}
                   autoComplete="off"
                   type="number"
+                  step="0.01"
                 />
               </FormControl>
               <FormDescription>{dictionary.hip_description}</FormDescription>
