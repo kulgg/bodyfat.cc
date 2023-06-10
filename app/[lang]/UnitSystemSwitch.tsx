@@ -3,11 +3,11 @@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { unitSystemAtom } from "@/lib/atoms";
+import { LocaleDictionary } from "@/lib/model";
 import { capitalize } from "@/lib/utils";
 import { useAtom } from "jotai";
-import { HeaderDictionary } from "./Header";
 
-function UnitSystemSwitch({ dictionary }: { dictionary: HeaderDictionary }) {
+function UnitSystemSwitch({ dictionary }: { dictionary: LocaleDictionary }) {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
@@ -20,7 +20,7 @@ function UnitSystemSwitch({ dictionary }: { dictionary: HeaderDictionary }) {
         }
       />
       <Label htmlFor="unitSwitch" className="">
-        {capitalize(dictionary[unitSystem])}
+        {capitalize(dictionary.general[unitSystem])}
       </Label>
     </div>
   );

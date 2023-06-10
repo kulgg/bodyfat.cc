@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom } from "@/lib/atoms";
-import { Entry, Sex } from "@/lib/model";
+import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { toFeet, toInches, toPounds } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,32 +22,39 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import * as z from "zod";
-import { FormsDictionary } from "./Forms";
 
-const getFormSchema = (dictionary: FormsDictionary) =>
+const getFormSchema = (dictionary: LocaleDictionary) =>
   z.object({
     height: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     weight: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     neck: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     belly: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
   });
 
 export default function MaleMetricForm({
   dictionary,
 }: {
-  dictionary: FormsDictionary;
+  dictionary: LocaleDictionary;
 }) {
   const router = useRouter();
   const schema = getFormSchema(dictionary);
@@ -85,7 +92,7 @@ export default function MaleMetricForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/me");
     toast({
-      title: `${dictionary.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -97,7 +104,7 @@ export default function MaleMetricForm({
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.height} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.height} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="180"
@@ -116,7 +123,7 @@ export default function MaleMetricForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.weight} (kg)</FormLabel>
+              <FormLabel>{dictionary.general.weight} (kg)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="78"
@@ -135,7 +142,7 @@ export default function MaleMetricForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.neck} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.neck} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="36"
@@ -145,7 +152,9 @@ export default function MaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.neck_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.neck_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -155,7 +164,7 @@ export default function MaleMetricForm({
           name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.belly} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.belly} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="82"
@@ -166,15 +175,14 @@ export default function MaleMetricForm({
                 />
               </FormControl>
               <FormDescription>
-                Measure the waist circumference at the belly button. Hold the
-                tape parallel to the floor.
+                {dictionary.forms.belly_description}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.cta}
+          {dictionary.forms.cta}
         </Button>
       </form>
     </Form>

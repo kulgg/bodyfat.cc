@@ -24,11 +24,11 @@ export default async function Home({
               variant={"link"}
               className=" text-slate-400 hover:text-slate-200 text-sm"
             >
-              {dictionary.landing.history} →
+              {dictionary.general.history} →
             </Button>
           </Link>
         </div>
-        <Forms dictionary={dictionary.landing.forms} />
+        <Forms dictionary={dictionary} />
       </div>
     </main>
   );

@@ -14,10 +14,7 @@ import { Line } from "react-chartjs-2";
 import { useAtom } from "jotai";
 import { historyAtom } from "@/lib/atoms";
 import { formatDate, getBodyfat, getBodyfatResult } from "@/lib/utils";
-import History from "../(history)/History";
-import { Locale } from "@/i18n-config";
-import { getDictionary } from "@/get-dictionary";
-import { FormsDictionary } from "../(form)/Forms";
+import { LocaleDictionary } from "@/lib/model";
 
 ChartJS.register(
   CategoryScale,
@@ -58,7 +55,11 @@ export const options = {
   },
 };
 
-export default function Chart({ dictionary }: { dictionary: FormsDictionary }) {
+export default function Chart({
+  dictionary,
+}: {
+  dictionary: LocaleDictionary;
+}) {
   const [history, setHistory] = useAtom(historyAtom);
 
   const validDataPoints = useMemo(
@@ -73,7 +74,7 @@ export default function Chart({ dictionary }: { dictionary: FormsDictionary }) {
     labels: validDataPoints.map((x) => formatDate(x.created)),
     datasets: [
       {
-        label: dictionary.bodyfat,
+        label: dictionary.general.bodyfat,
         data: validDataPoints.map((x) => getBodyfat(x)),
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",

@@ -11,9 +11,9 @@ import {
 import { unitSystemAtom } from "@/lib/atoms";
 import { useAtom } from "jotai";
 import { HelpCircle } from "lucide-react";
-import { HeaderDictionary } from "./Header";
+import { LocaleDictionary } from "@/lib/model";
 
-export function About({ dictionary }: { dictionary: HeaderDictionary }) {
+export function About({ dictionary }: { dictionary: LocaleDictionary }) {
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (

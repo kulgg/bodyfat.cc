@@ -2,35 +2,9 @@ import { Icons } from "@/components/ui/icons";
 import Link from "next/link";
 import { About } from "./About";
 import UnitSystemSwitch from "./UnitSystemSwitch";
+import { LocaleDictionary } from "@/lib/model";
 
-export interface HeaderDictionary {
-  metric: string;
-  imperial: string;
-  about: {
-    formula: {
-      title: string;
-      description: string;
-    };
-    privacy: {
-      title: string;
-      description: string;
-    };
-    accuracy: {
-      title: string;
-      description: string;
-    };
-    free: {
-      title: string;
-      description: string;
-    };
-    opensource: {
-      title: string;
-      description: string;
-    };
-  };
-}
-
-function Header({ dictionary }: { dictionary: HeaderDictionary }) {
+function Header({ dictionary }: { dictionary: LocaleDictionary }) {
   return (
     <header className="h-16 border-b border-b-slate-800 flex flex-col justify-center max-w-4xl mx-auto px-1">
       <div className="justify-between flex items-center">

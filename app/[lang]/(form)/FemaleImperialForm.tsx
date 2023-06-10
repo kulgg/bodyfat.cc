@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom } from "@/lib/atoms";
-import { Entry, Sex } from "@/lib/model";
+import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { footToCm, inchesToCm, poundsToKg } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,40 +21,47 @@ import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import * as z from "zod";
-import { FormsDictionary } from "./Forms";
 
-const formSchema = (dictionary: FormsDictionary) =>
+const formSchema = (dictionary: LocaleDictionary) =>
   z.object({
     height_foot: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+$/, { message: dictionary.forms.error_messages.number }),
     height_inches: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+$/, { message: dictionary.forms.error_messages.number }),
     weight: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     neck: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     waist: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     hip: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
   });
 
 export default function FemaleImperialForm({
   dictionary,
 }: {
-  dictionary: FormsDictionary;
+  dictionary: LocaleDictionary;
 }) {
   const router = useRouter();
   const schema = formSchema(dictionary);
@@ -101,7 +108,7 @@ export default function FemaleImperialForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/me");
     toast({
-      title: `${dictionary.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -114,7 +121,9 @@ export default function FemaleImperialForm({
             name="height_foot"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">{dictionary.height} (ft)</FormLabel>
+                <FormLabel className="">
+                  {dictionary.general.height} (ft)
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="5"
@@ -151,7 +160,7 @@ export default function FemaleImperialForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.weight} (lb)</FormLabel>
+              <FormLabel>{dictionary.general.weight} (lb)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="139"
@@ -170,7 +179,7 @@ export default function FemaleImperialForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.neck} (in)</FormLabel>
+              <FormLabel>{dictionary.general.neck} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="13.5"
@@ -180,7 +189,9 @@ export default function FemaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.neck_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.neck_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -190,7 +201,7 @@ export default function FemaleImperialForm({
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.waist} (in)</FormLabel>
+              <FormLabel>{dictionary.general.waist} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="31.7"
@@ -200,7 +211,9 @@ export default function FemaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.waist_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.waist_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -210,7 +223,7 @@ export default function FemaleImperialForm({
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.hip} (in)</FormLabel>
+              <FormLabel>{dictionary.general.hip} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="37.4"
@@ -220,13 +233,15 @@ export default function FemaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.hip_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.hip_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.cta}
+          {dictionary.forms.cta}
         </Button>
       </form>
     </Form>

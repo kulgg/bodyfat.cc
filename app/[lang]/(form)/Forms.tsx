@@ -7,33 +7,9 @@ import FemaleImperialForm from "./FemaleImperialForm";
 import FemaleMetricForm from "./FemaleMetricForm";
 import MaleImperialForm from "./MaleImperialForm";
 import MaleMetricForm from "./MaleMetricForm";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { LocaleDictionary } from "@/lib/model";
 
-export interface FormsDictionary {
-  date: string;
-  bodyfat: string;
-  sex: string;
-  male: string;
-  female: string;
-  height: string;
-  weight: string;
-  neck: string;
-  belly: string;
-  waist: string;
-  hip: string;
-  cta: string;
-  neck_description: string;
-  waist_description: string;
-  hip_description: string;
-  error_messages: {
-    required: string;
-    number: string;
-  };
-  result_message: string;
-}
-
-function Forms({ dictionary }: { dictionary: FormsDictionary }) {
+function Forms({ dictionary }: { dictionary: LocaleDictionary }) {
   const [sexSelection, setSexSelection] = useAtom(sexSelectionAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
@@ -49,7 +25,7 @@ function Forms({ dictionary }: { dictionary: FormsDictionary }) {
           >
             <RadioGroupItem value="Male" id="Male" />
             <Label htmlFor="Male" className="cursor-pointer">
-              {dictionary.male}
+              {dictionary.general.male}
             </Label>
           </div>
           <div
@@ -58,7 +34,7 @@ function Forms({ dictionary }: { dictionary: FormsDictionary }) {
           >
             <RadioGroupItem value="Female" id="Female" />
             <Label htmlFor="Female" className="cursor-pointer">
-              {dictionary.female}
+              {dictionary.general.female}
             </Label>
           </div>
         </RadioGroup>

@@ -20,13 +20,12 @@ import {
 } from "@/components/ui/tooltip";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
-import { Entry, Sex } from "@/lib/model";
+import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useMemo, useState } from "react";
 import { z } from "zod";
-import { FormsDictionary } from "../(form)/Forms";
 
 const schema = z.array(
   z.object({
@@ -53,7 +52,7 @@ const schema = z.array(
   })
 );
 
-function History({ dictionary }: { dictionary: FormsDictionary }) {
+function History({ dictionary }: { dictionary: LocaleDictionary }) {
   const [history, setHistory] = useAtom(historyAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
   const { toast } = useToast();
@@ -88,7 +87,9 @@ function History({ dictionary }: { dictionary: FormsDictionary }) {
   return (
     <div id="history">
       <div className="flex justify-between my-4">
-        <h2 className="text-xl text-slate-100 font-semibold">History</h2>
+        <h2 className="text-xl text-slate-100 font-semibold">
+          {dictionary.general.history}
+        </h2>
         <div className="mt-2 flex items-center gap-3">
           <TooltipProvider>
             <Tooltip>
@@ -126,28 +127,28 @@ function History({ dictionary }: { dictionary: FormsDictionary }) {
         <TableCaption>Measurements History.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>{dictionary.date}</TableHead>
+            <TableHead>{dictionary.general.date}</TableHead>
             <TableHead className="whitespace-nowrap">
-              {dictionary.bodyfat}
+              {dictionary.general.bodyfat}
             </TableHead>
-            <TableHead>{dictionary.sex}</TableHead>
+            <TableHead>{dictionary.general.sex}</TableHead>
             <TableHead>
-              {dictionary.height} ({isMetricSystem ? "cm" : "foot"})
-            </TableHead>
-            <TableHead>
-              {dictionary.weight} ({isMetricSystem ? "kg" : "lb"})
+              {dictionary.general.height} ({isMetricSystem ? "cm" : "foot"})
             </TableHead>
             <TableHead>
-              {dictionary.neck} ({isMetricSystem ? "cm" : "in"})
+              {dictionary.general.weight} ({isMetricSystem ? "kg" : "lb"})
             </TableHead>
             <TableHead>
-              {dictionary.belly} ({isMetricSystem ? "cm" : "in"})
+              {dictionary.general.neck} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead>
-              {dictionary.waist} ({isMetricSystem ? "cm" : "in"})
+              {dictionary.general.belly} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead>
-              {dictionary.hip} ({isMetricSystem ? "cm" : "in"})
+              {dictionary.general.waist} ({isMetricSystem ? "cm" : "in"})
+            </TableHead>
+            <TableHead>
+              {dictionary.general.hip} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead></TableHead>
           </TableRow>

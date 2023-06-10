@@ -1,55 +1,54 @@
 {
   "title": "Körperfettanteil berechnen",
   "description": "",
-  "landing": {
-    "forms": {
-      "date": "Datum",
-      "bodyfat": "KFA (%)",
-      "sex": "Geschl.",
-      "male": "Männlich",
-      "female": "Weiblich",
-      "height": "Größe",
-      "weight": "Gewicht",
-      "neck": "Nacken",
-      "belly": "Bauch",
-      "waist": "Taille",
-      "hip": "Hüfte",
-      "cta": "Körperfettanteil berechnen",
-      "neck_description": "Messen Sie den Halsumfang direkt unterhalb des Kehlkopfes und schauen Sie dabei geradeaus.",
-      "waist_description": "Messen Sie den Taillenumfang an der schmalsten Stelle der Taille. Halten Sie das Messband parallel zum Boden.",
-      "hip_description": "Messen Sie den Hüftumfang an der größten Stelle des Hinterns. Halten Sie das Messband parallel zum Boden.",
-      "error_messages": {
-        "required": "Erforderlich",
-        "number": "Muss eine Zahl sein."
-      },
-      "result_message": "Ihr Körperfettanteil beträgt"
-    },
-    "history": "Verlauf"
-  },
-  "header": {
+  "general": {
+    "history": "Verlauf",
+    "date": "Datum",
+    "bodyfat": "KFA (%)",
+    "sex": "Geschl.",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "height": "Größe",
+    "weight": "Gewicht",
+    "neck": "Nacken",
+    "belly": "Bauch",
+    "waist": "Taille",
+    "hip": "Hüfte",
     "metric": "Metrisch",
-    "imperial": "Imperial",
-    "about": {
-      "formula": {
-        "title": "Wie funktioniert dieser Körperfettrechner?",
-        "description": "Der Körperfettanteil (KFA) wird mithilfe der US-Navy-Methode geschätzt, welche die Körpergröße und den Umfang an verschiedenen Stellen des Körpers berücksichtigt. Die Formel und Messpositionen unterscheiden sich für Männer und Frauen."
-      },
-      "privacy": {
-        "title": "Was passiert mit meinen Daten?",
-        "description": "Die von Ihnen eingegebenen Daten verlassen niemals das Gerät. Alles wird lokal im Browser gespeichert."
-      },
-      "accuracy": {
-        "title": "Wie genau ist diese Methode?",
-        "description": "Die Genauigkeit liegt innerhalb eines Fehlerbereichs von ~3 %. Damit ist die Approximation akurater als bei Waagen mit bioelektrischer Impedanz. Und alles, was Sie brauchen, ist ein Maßband."
-      },
-      "free": {
-        "title": "Ist die App kostenlos?",
-        "description": "Ja, Sie können Ihren Körperfettanteil kostenlos messen und protokollieren."
-      },
-      "opensource": {
-        "title": "Ist die App Open Source?",
-        "description": "Ja, diese Webanwendung ist Open-Source unter MIT-Lizenz."
-      }
+    "imperial": "Imperial"
+  },
+  "forms": {
+    "cta": "Körperfettanteil berechnen",
+    "neck_description": "Messen Sie den Halsumfang direkt unterhalb des Kehlkopfes und schauen Sie dabei geradeaus.",
+    "waist_description": "Messen Sie den Taillenumfang an der schmalsten Stelle der Taille. Halten Sie das Messband parallel zum Boden.",
+    "hip_description": "Messen Sie den Hüftumfang an der größten Stelle des Hinterns. Halten Sie das Messband parallel zum Boden.",
+    "belly_description": "Messen Sie den Taillenumfang am Bauchnabel. Halten Sie das Messband parallel zum Boden.",
+    "error_messages": {
+      "required": "Erforderlich.",
+      "number": "Muss eine Zahl sein."
+    },
+    "result_message": "Ihr Körperfettanteil beträgt"
+  },
+  "about": {
+    "formula": {
+      "title": "Wie funktioniert dieser Körperfettrechner?",
+      "description": "Der Körperfettanteil (KFA) wird mithilfe der US-Navy-Methode geschätzt, welche die Körpergröße und den Umfang an verschiedenen Stellen des Körpers berücksichtigt. Die Formel und Messpositionen unterscheiden sich für Männer und Frauen."
+    },
+    "privacy": {
+      "title": "Was passiert mit meinen Daten?",
+      "description": "Die von Ihnen eingegebenen Daten verlassen niemals das Gerät. Alles wird lokal im Browser gespeichert."
+    },
+    "accuracy": {
+      "title": "Wie genau ist diese Methode?",
+      "description": "Die Genauigkeit liegt innerhalb eines Fehlerbereichs von ~3 %. Damit ist die Approximation akurater als bei Waagen mit bioelektrischer Impedanz. Und alles, was Sie brauchen, ist ein Maßband."
+    },
+    "free": {
+      "title": "Ist die App kostenlos?",
+      "description": "Ja, Sie können Ihren Körperfettanteil kostenlos messen und protokollieren."
+    },
+    "opensource": {
+      "title": "Ist die App Open Source?",
+      "description": "Ja, diese Webanwendung ist Open-Source unter MIT-Lizenz."
     }
   }
 }

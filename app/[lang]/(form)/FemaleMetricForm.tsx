@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom } from "@/lib/atoms";
-import { Entry, Sex } from "@/lib/model";
+import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { toFeet, toInches, toPounds } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,36 +21,45 @@ import { useRouter } from "next/navigation";
 import { useAtom } from "jotai";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { FormsDictionary } from "./Forms";
 
-export const getFormSchema = (dictionary: FormsDictionary) =>
+export const getFormSchema = (dictionary: LocaleDictionary) =>
   z.object({
     height: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     weight: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     neck: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     waist: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
     hip: z
       .string()
-      .min(1, { message: dictionary.error_messages.required })
-      .regex(/^\d+\.?\d*$/, { message: dictionary.error_messages.number }),
+      .min(1, { message: dictionary.forms.error_messages.required })
+      .regex(/^\d+\.?\d*$/, {
+        message: dictionary.forms.error_messages.number,
+      }),
   });
 
 export default function FemaleMetricForm({
   dictionary,
 }: {
-  dictionary: FormsDictionary;
+  dictionary: LocaleDictionary;
 }) {
   const router = useRouter();
   const formSchema = getFormSchema(dictionary);
@@ -95,7 +104,7 @@ export default function FemaleMetricForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/me");
     toast({
-      title: `${dictionary.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -107,7 +116,7 @@ export default function FemaleMetricForm({
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.height} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.height} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="167"
@@ -126,7 +135,7 @@ export default function FemaleMetricForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.weight} (kg)</FormLabel>
+              <FormLabel>{dictionary.general.weight} (kg)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="63"
@@ -145,7 +154,7 @@ export default function FemaleMetricForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.neck} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.neck} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="34.2"
@@ -155,7 +164,9 @@ export default function FemaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.neck_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.neck_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -165,7 +176,7 @@ export default function FemaleMetricForm({
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.waist} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.waist} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="80.5"
@@ -175,7 +186,9 @@ export default function FemaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.waist_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.waist_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -185,7 +198,7 @@ export default function FemaleMetricForm({
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.hip} (cm)</FormLabel>
+              <FormLabel>{dictionary.general.hip} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="95"
@@ -195,13 +208,15 @@ export default function FemaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>{dictionary.hip_description}</FormDescription>
+              <FormDescription>
+                {dictionary.forms.hip_description}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.cta}
+          {dictionary.forms.cta}
         </Button>
       </form>
     </Form>

@@ -52,7 +52,7 @@ export default async function RootLayout({
           inter.variable
         )}
       >
-        <Header dictionary={dictionary.header} />
+        <Header dictionary={dictionary} />
         <div className="max-w-[800px] mx-auto">{children}</div>
         <Toaster />
       </body>
