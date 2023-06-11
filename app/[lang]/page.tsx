@@ -14,9 +14,9 @@ export default async function Home({
 
   return (
     <main className="">
-      <div className="px-2 my-8 sm:my-16">
+      <div className="px-5 lg:px-0 my-8 sm:my-16">
         <div className="flex justify-between">
-          <h1 className="text-xl sm:text-xl my-3 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-100 via-green-200 to-rose-500 bg-clip-text text-transparent">
+          <h1 className="text-lg md:text-xl my-3 bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-100 via-green-200 to-rose-500 bg-clip-text text-transparent">
             <Balancer>{dictionary.title}</Balancer>
           </h1>
           <Link href={"/history"} className="mt-[6px]">

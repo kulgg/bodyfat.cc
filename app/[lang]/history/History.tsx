@@ -89,10 +89,6 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
 
   const isMetricSystem = unitSystem === "metric";
 
-  const dataStr =
-    "data:text/json;charset=utf-8," +
-    encodeURIComponent(JSON.stringify(history));
-
   return (
     <div id="history">
       <div className="flex justify-between my-4">
