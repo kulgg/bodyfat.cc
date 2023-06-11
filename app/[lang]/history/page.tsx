@@ -1,8 +1,8 @@
 import { getDictionary } from "@/get-dictionary";
 import { Locale } from "@/i18n-config";
+import { Metadata } from "next";
 import Chart from "./Chart";
 import History from "./History";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "History",

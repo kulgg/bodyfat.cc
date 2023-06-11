@@ -22,12 +22,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import { Entry, LocaleDictionary, Sex } from "@/lib/model";
 import { formatDate, getBodyfatResult } from "@/lib/utils";
+import { saveAs } from "file-saver";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
-import { saveAs } from "file-saver";
-import { Button } from "@/components/ui/button";
 
 const schema = z.array(
   z.object({
