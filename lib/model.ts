@@ -34,6 +34,7 @@ export interface LocaleDictionary {
   title: string;
   description: string;
   general: {
+    measurements_history: string;
     history: string;
     date: string;
     bodyfat: string;
