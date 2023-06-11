@@ -1,6 +1,14 @@
 <h1 align="center"><a href="https://bodyfat.cc">bodyfat.cc</a></h1>
 
-bodyfat.cc helps you measure and log your body fat percentage. Free. No registration. No tracking. 100% private (all data reside in local storage). Functionality to import/export all measurements as JSON.
+bodyfat.cc helps you measure and log your body fat percentage.
+
+## Features
+
+- Free
+- No registration
+- No tracking
+- 100% private (all data reside in local storage)
+- Functionality to import/export all measurements as JSON
 
 ## Stack
 
