@@ -90,6 +90,9 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
         <h2 className="text-xl text-slate-100 font-semibold">
           {dictionary.general.history}
         </h2>
+        <a href={dataStr} download="bodyfat_history.json">
+          <Icons.download className="w-5 h-5" />
+        </a>
         <div className="mt-2 flex items-center gap-3">
           <TooltipProvider>
             <Tooltip>
@@ -98,6 +101,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                   type="file"
                   id="history_upload"
                   className="hidden"
+                  accept="application/JSON"
                   onChange={handleFileChange}
                 />
                 <Label htmlFor="history_upload" className="cursor-pointer">
