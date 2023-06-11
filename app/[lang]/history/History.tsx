@@ -26,6 +26,8 @@ import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
+import { saveAs } from "file-saver";
+import { Button } from "@/components/ui/button";
 
 const schema = z.array(
   z.object({
@@ -73,6 +75,13 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
     }
   };
 
+  const downloadHistory = () => {
+    const fileBlob = new Blob([JSON.stringify(history)], {
+      type: "application/json",
+    });
+    saveAs(fileBlob, "body_history.json");
+  };
+
   const sortedHistory = useMemo(
     () => history.sort((a, b) => Date.parse(b.created) - Date.parse(a.created)),
     [history]
@@ -90,9 +99,6 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
         <h2 className="text-xl text-slate-100 font-semibold">
           {dictionary.general.history}
         </h2>
-        <a href={dataStr} download="bodyfat_history.json">
-          <Icons.download className="w-5 h-5" />
-        </a>
         <div className="mt-2 flex items-center gap-3">
           <TooltipProvider>
             <Tooltip>
@@ -116,9 +122,9 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <a href={dataStr} download="bodyfat_history.json">
+                <div onClick={downloadHistory} className="cursor-pointer">
                   <Icons.download className="w-5 h-5" />
-                </a>
+                </div>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Export</p>
