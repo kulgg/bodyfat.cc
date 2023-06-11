@@ -28,8 +28,8 @@ export async function generateMetadata({
 
   return {
     title: {
-      template: "%s | bodyfat.io",
-      default: `${dictionary.title} | bodyfat.io`,
+      template: "%s | bodyfat.cc",
+      default: `${dictionary.title} | bodyfat.cc`,
     },
     description: dictionary.description,
   };
@@ -59,7 +59,7 @@ export default async function RootLayout({
       </body>
       <Script
         defer
-        data-domain="bodyfat.io"
+        data-domain="bodyfat.cc"
         src="https://analytics.kul.gg/js/script.js"
       />
     </html>
