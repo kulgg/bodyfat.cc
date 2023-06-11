@@ -5,7 +5,7 @@ export default function robots() {
         userAgent: "*",
       },
     ],
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
-    host: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+    sitemap: "https://bodyfat.cc/sitemap.xml",
+    host: "https://bodyfat.cc",
   };
 }
