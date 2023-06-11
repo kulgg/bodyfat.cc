@@ -129,7 +129,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
         </div>
       </div>
       <Table>
-        <TableCaption>Measurements History.</TableCaption>
+        <TableCaption>{dictionary.general.measurements_history}</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>{dictionary.general.date}</TableHead>

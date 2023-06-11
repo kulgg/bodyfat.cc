@@ -2,6 +2,7 @@
   "title": "Army body fat calculator",
   "description": "Use our reliable army body fat calculator to determine your body fat percentage for free. No registration needed. 100% private . All data stays on your device.",
   "general": {
+    "measurements_history": "Measurements History.",
     "history": "History",
     "date": "Date",
     "bodyfat": "Body fat (%)",
