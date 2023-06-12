@@ -4,8 +4,9 @@ bodyfat.cc helps you measure and log your body fat percentage.
 
 ## Features
 
+- Track your measurements over time
 - Clean UI/UX
-- Free
+- Internationalization
 - No registration
 - No tracking, 100% private (all data reside in local storage)
 - Functionality to import/export all measurements as JSON
