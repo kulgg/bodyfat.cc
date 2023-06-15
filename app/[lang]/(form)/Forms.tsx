@@ -23,7 +23,7 @@ function Forms({ dictionary }: { dictionary: LocaleDictionary }) {
             className="flex items-center space-x-2"
             onClick={() => setSexSelection("Male")}
           >
-            <RadioGroupItem value="Male" id="Male" />
+            <RadioGroupItem value="Male" id="Male" aria-label="Male" />
             <Label htmlFor="Male" className="cursor-pointer">
               {dictionary.general.male}
             </Label>
@@ -32,7 +32,7 @@ function Forms({ dictionary }: { dictionary: LocaleDictionary }) {
             className="flex items-center space-x-2 cursor-pointer"
             onClick={() => setSexSelection("Female")}
           >
-            <RadioGroupItem value="Female" id="Female" />
+            <RadioGroupItem value="Female" id="Female" aria-label="Female" />
             <Label htmlFor="Female" className="cursor-pointer">
               {dictionary.general.female}
             </Label>

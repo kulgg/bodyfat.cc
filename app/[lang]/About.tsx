@@ -17,7 +17,7 @@ export function About({ dictionary }: { dictionary: LocaleDictionary }) {
 
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger aria-label="Open FAQ">
         <HelpCircle className="w-6 h-6 mx-1 cursor-pointer" />
       </SheetTrigger>
       <SheetContent position="right" size="content" className="overflow-y-auto">

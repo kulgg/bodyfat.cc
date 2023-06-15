@@ -13,10 +13,14 @@ function Header({ dictionary }: { dictionary: LocaleDictionary }) {
             bodyfat.cc
           </h1>
         </Link>
-        <nav className="flex items-center gap-2 sm:gap-4">
+        <nav className="flex items-center gap-3 sm:gap-4">
           <UnitSystemSwitch dictionary={dictionary} />
           <About dictionary={dictionary} />
-          <a href="https://github.com/kulgg/bodyfat.cc" target="_blank">
+          <a
+            href="https://github.com/kulgg/bodyfat.cc"
+            target="_blank"
+            aria-label="bodyfat.cc GitHub"
+          >
             <Icons.gitHub className="w-5 h-5" />
           </a>
         </nav>

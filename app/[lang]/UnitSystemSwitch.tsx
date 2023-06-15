@@ -18,6 +18,7 @@ function UnitSystemSwitch({ dictionary }: { dictionary: LocaleDictionary }) {
         onClick={() =>
           setUnitSystem((prev) => (prev === "metric" ? "imperial" : "metric"))
         }
+        aria-label="Switch Unit System"
       />
       <Label htmlFor="unitSwitch" className="">
         {capitalize(dictionary.general[unitSystem])}
