@@ -128,7 +128,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
           </TooltipProvider>
         </div>
       </div>
-      <Table>
+      <Table className="hidden md:block">
         <TableCaption>{dictionary.general.measurements_history}</TableCaption>
         <TableHeader>
           <TableRow>
@@ -226,6 +226,75 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
           ))}
         </TableBody>
       </Table>
+      <div className="flex flex-col gap-10 md:hidden font-mono text-sm">
+        {sortedHistory.map((x, i) => (
+          <div key={x.created}>
+            <div className="flex justify-between items-center mb-2">
+              <div className="text-slate-400">{formatDate(x.created)}</div>
+              <Trash2
+                className="w-4 h-4 text-slate-100 cursor-pointer"
+                onClick={() => {
+                  setHistory((y) => y.filter((v, j) => j !== i));
+                }}
+              />
+            </div>
+            <div className="flex items-center gap-3 mb-2">
+              <div>{x.metric_measurement.sex === Sex.FEMALE ? "👩" : "👨"}</div>
+              <Badge variant={"default"}>{getBodyfatResult(x)}%</Badge>
+            </div>
+            <div className="flex items-center gap-5">
+              <div className="">
+                Height:{" "}
+                {isMetricSystem
+                  ? `${x.metric_measurement.height.toFixed(1)} cm`
+                  : `${x.imperial_measurement.height.toFixed(
+                      0
+                    )}'${x.imperial_measurement.height_inches?.toFixed(0)}"`}
+              </div>
+              <div className="">
+                Weight:{" "}
+                <span className="text-sm">
+                  {isMetricSystem
+                    ? `${x.metric_measurement.weight.toFixed(1)} kg`
+                    : `${x.imperial_measurement.weight.toFixed(1)} lb`}
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-5">
+              <div>
+                Neck:{" "}
+                {isMetricSystem
+                  ? `${x.metric_measurement.neck.toFixed(1)} cm`
+                  : `${x.metric_measurement.neck?.toFixed(1)} in`}
+              </div>
+              {x.metric_measurement.belly ? (
+                <div>
+                  Belly:{" "}
+                  {isMetricSystem
+                    ? `${x.metric_measurement.belly.toFixed(1)} cm`
+                    : `${x.metric_measurement.belly.toFixed(1)} in`}
+                </div>
+              ) : null}
+              {x.metric_measurement.waist ? (
+                <div>
+                  Waist:{" "}
+                  {isMetricSystem
+                    ? `${x.metric_measurement.waist.toFixed(1)} cm`
+                    : `${x.metric_measurement.waist.toFixed(1)} in`}
+                </div>
+              ) : null}
+              {x.metric_measurement.hip ? (
+                <div>
+                  Hip:{" "}
+                  {isMetricSystem
+                    ? `${x.metric_measurement.hip.toFixed(1)} cm`
+                    : `${x.metric_measurement.hip.toFixed(1)} in`}
+                </div>
+              ) : null}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
