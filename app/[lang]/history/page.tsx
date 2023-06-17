@@ -12,7 +12,7 @@ export default async function App({ params }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(params.lang);
 
   return (
-    <main className="px-2 my-8 sm:my-16">
+    <main className="px-5 lg:px-0 my-8 sm:my-16">
       <History dictionary={dictionary} />
       <div className="my-12 md:my-20"></div>
       <Chart dictionary={dictionary} />

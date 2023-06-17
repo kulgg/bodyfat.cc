@@ -250,7 +250,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
               <div>{x.metric_measurement.sex === Sex.FEMALE ? "👩" : "👨"}</div>
               <Badge variant={"default"}>{getBodyfatResult(x)}%</Badge>
             </div>
-            <div className="grid grid-cols-2 gap-1 gap-x-5 px-1 sm:gap-x-16 sm:px-8 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-2 gap-x-5 sm:gap-x-16 sm:px-8 sm:grid-cols-3">
               <div className="flex items-center justify-between gap-1">
                 <Badge variant={"outline"}>Height</Badge>
                 <span className="font-mono text-slate-300">
