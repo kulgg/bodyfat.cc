@@ -97,7 +97,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
         <div className="mt-2 flex items-center gap-3">
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger aria-label="Import History">
                 <Input
                   type="file"
                   id="history_upload"
@@ -116,7 +116,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
           </TooltipProvider>
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger>
+              <TooltipTrigger aria-label="Download History">
                 <div onClick={downloadHistory} className="cursor-pointer">
                   <Icons.download className="w-5 h-5" />
                 </div>
