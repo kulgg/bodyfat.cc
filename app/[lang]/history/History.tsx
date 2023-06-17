@@ -21,7 +21,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import { Entry, LocaleDictionary, Sex } from "@/lib/model";
-import { formatDate, getBodyfatResult } from "@/lib/utils";
+import { cn, formatDate, getBodyfatResult } from "@/lib/utils";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
@@ -226,11 +226,19 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
           ))}
         </TableBody>
       </Table>
-      <div className="flex flex-col gap-10 md:hidden font-mono text-sm">
+      <div className="flex flex-col md:hidden text-sm mt-2">
         {sortedHistory.map((x, i) => (
-          <div key={x.created}>
+          <div
+            key={x.created}
+            className={cn(
+              "py-5",
+              i !== sortedHistory.length - 1 && "border-b  border-slate-800"
+            )}
+          >
             <div className="flex justify-between items-center mb-2">
-              <div className="text-slate-400">{formatDate(x.created)}</div>
+              <div className="text-slate-400 text-xs">
+                {formatDate(x.created)}
+              </div>
               <Trash2
                 className="w-4 h-4 text-slate-100 cursor-pointer"
                 onClick={() => {
@@ -238,57 +246,65 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                 }}
               />
             </div>
-            <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center gap-3 mb-2 text-sm">
               <div>{x.metric_measurement.sex === Sex.FEMALE ? "👩" : "👨"}</div>
               <Badge variant={"default"}>{getBodyfatResult(x)}%</Badge>
             </div>
-            <div className="flex items-center gap-5">
-              <div className="">
-                Height:{" "}
-                {isMetricSystem
-                  ? `${x.metric_measurement.height.toFixed(1)} cm`
-                  : `${x.imperial_measurement.height.toFixed(
-                      0
-                    )}'${x.imperial_measurement.height_inches?.toFixed(0)}"`}
+            <div className="grid grid-cols-2 gap-1">
+              <div className="flex items-center justify-between px-5 gap-1">
+                <Badge variant={"outline"}>Height</Badge>
+                <span className="font-mono text-slate-300">
+                  {isMetricSystem
+                    ? `${x.metric_measurement.height.toFixed(1)} cm`
+                    : `${x.imperial_measurement.height.toFixed(
+                        0
+                      )}'${x.imperial_measurement.height_inches?.toFixed(0)}"`}
+                </span>
               </div>
-              <div className="">
-                Weight:{" "}
-                <span className="text-sm">
+              <div className="flex items-center justify-between px-5 gap-1">
+                <Badge variant={"outline"}>Weight</Badge>
+                <span className="font-mono text-slate-300">
                   {isMetricSystem
                     ? `${x.metric_measurement.weight.toFixed(1)} kg`
                     : `${x.imperial_measurement.weight.toFixed(1)} lb`}
                 </span>
               </div>
-            </div>
-            <div className="flex items-center gap-5">
-              <div>
-                Neck:{" "}
-                {isMetricSystem
-                  ? `${x.metric_measurement.neck.toFixed(1)} cm`
-                  : `${x.metric_measurement.neck?.toFixed(1)} in`}
+              <div className="flex items-center justify-between px-5 gap-1">
+                <Badge variant={"outline"}>Neck</Badge>
+                <span className="font-mono text-slate-300">
+                  {isMetricSystem
+                    ? `${x.metric_measurement.neck.toFixed(1)} cm`
+                    : `${x.imperial_measurement.neck?.toFixed(1)} in`}
+                </span>
               </div>
               {x.metric_measurement.belly ? (
-                <div>
-                  Belly:{" "}
-                  {isMetricSystem
-                    ? `${x.metric_measurement.belly.toFixed(1)} cm`
-                    : `${x.metric_measurement.belly.toFixed(1)} in`}
+                <div className="flex items-center justify-between px-5 gap-1">
+                  <Badge variant={"outline"}>Belly</Badge>
+                  <span className="font-mono text-slate-300 text-sm">
+                    {isMetricSystem
+                      ? `${x.metric_measurement.belly.toFixed(1)} cm`
+                      : `${x.imperial_measurement.belly?.toFixed(1)} in`}
+                  </span>
                 </div>
               ) : null}
               {x.metric_measurement.waist ? (
-                <div>
-                  Waist:{" "}
-                  {isMetricSystem
-                    ? `${x.metric_measurement.waist.toFixed(1)} cm`
-                    : `${x.metric_measurement.waist.toFixed(1)} in`}
+                <div className="flex items-center justify-between px-5 gap-1">
+                  <Badge variant={"outline"}>Waist</Badge>
+                  <span className="font-mono text-slate-300">
+                    {isMetricSystem
+                      ? `${x.metric_measurement.waist.toFixed(1)} cm`
+                      : `${x.imperial_measurement.waist?.toFixed(1)} in`}
+                  </span>
                 </div>
               ) : null}
               {x.metric_measurement.hip ? (
-                <div>
-                  Hip:{" "}
-                  {isMetricSystem
-                    ? `${x.metric_measurement.hip.toFixed(1)} cm`
-                    : `${x.metric_measurement.hip.toFixed(1)} in`}
+                <div className="flex items-center justify-between px-5 gap-1">
+                  <Badge variant={"outline"}>Hip</Badge>
+                  <span className="font-mono">
+                    {isMetricSystem
+                      ? `${x.metric_measurement.hip.toFixed(1)} cm`
+                      : `${x.imperial_measurement.hip?.toFixed(1)} in`}
+                  </span>
                 </div>
               ) : null}
             </div>

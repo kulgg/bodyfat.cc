@@ -14,7 +14,7 @@ export default async function App({ params }: { params: { lang: Locale } }) {
   return (
     <main className="px-2 my-8 sm:my-16">
       <History dictionary={dictionary} />
-      <div className="my-20"></div>
+      <div className="my-12 md:my-20"></div>
       <Chart dictionary={dictionary} />
     </main>
   );
