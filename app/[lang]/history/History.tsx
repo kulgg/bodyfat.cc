@@ -250,8 +250,8 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
               <div>{x.metric_measurement.sex === Sex.FEMALE ? "👩" : "👨"}</div>
               <Badge variant={"default"}>{getBodyfatResult(x)}%</Badge>
             </div>
-            <div className="grid grid-cols-2 gap-1">
-              <div className="flex items-center justify-between px-5 gap-1">
+            <div className="grid grid-cols-2 gap-1 gap-x-5 px-1 sm:gap-x-16 sm:px-8 sm:grid-cols-3">
+              <div className="flex items-center justify-between gap-1">
                 <Badge variant={"outline"}>Height</Badge>
                 <span className="font-mono text-slate-300">
                   {isMetricSystem
@@ -261,7 +261,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                       )}'${x.imperial_measurement.height_inches?.toFixed(0)}"`}
                 </span>
               </div>
-              <div className="flex items-center justify-between px-5 gap-1">
+              <div className="flex items-center justify-between gap-1">
                 <Badge variant={"outline"}>Weight</Badge>
                 <span className="font-mono text-slate-300">
                   {isMetricSystem
@@ -269,7 +269,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                     : `${x.imperial_measurement.weight.toFixed(1)} lb`}
                 </span>
               </div>
-              <div className="flex items-center justify-between px-5 gap-1">
+              <div className="flex items-center justify-between gap-1">
                 <Badge variant={"outline"}>Neck</Badge>
                 <span className="font-mono text-slate-300">
                   {isMetricSystem
@@ -278,7 +278,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                 </span>
               </div>
               {x.metric_measurement.belly ? (
-                <div className="flex items-center justify-between px-5 gap-1">
+                <div className="flex items-center justify-between gap-1">
                   <Badge variant={"outline"}>Belly</Badge>
                   <span className="font-mono text-slate-300 text-sm">
                     {isMetricSystem
@@ -288,7 +288,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                 </div>
               ) : null}
               {x.metric_measurement.waist ? (
-                <div className="flex items-center justify-between px-5 gap-1">
+                <div className="flex items-center justify-between gap-1">
                   <Badge variant={"outline"}>Waist</Badge>
                   <span className="font-mono text-slate-300">
                     {isMetricSystem
@@ -298,7 +298,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                 </div>
               ) : null}
               {x.metric_measurement.hip ? (
-                <div className="flex items-center justify-between px-5 gap-1">
+                <div className="flex items-center justify-between gap-1">
                   <Badge variant={"outline"}>Hip</Badge>
                   <span className="font-mono">
                     {isMetricSystem
