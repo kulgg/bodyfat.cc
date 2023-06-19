@@ -10,90 +10,44 @@
     <loc>https://bodyfat.cc</loc>
     <xhtml:link
                rel="alternate"
-               hreflang="x-default"
-               href="https://bodyfat.cc"/>
-    <xhtml:link
-               rel="alternate"
                hreflang="de"
                href="https://bodyfat.cc/de"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc/en"/>
+               href="https://bodyfat.cc"/>
   </url>
   <url>
     <loc>https://bodyfat.cc/de</loc>
     <xhtml:link
                rel="alternate"
-               hreflang="x-default"
-               href="https://bodyfat.cc"/>
-    <xhtml:link
-               rel="alternate"
                hreflang="de"
                href="https://bodyfat.cc/de"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc/en"/>
-  </url>
-  <url>
-    <loc>https://bodyfat.cc/en</loc>
-    <xhtml:link
-               rel="alternate"
-               hreflang="x-default"
                href="https://bodyfat.cc"/>
-    <xhtml:link
-               rel="alternate"
-               hreflang="de"
-               href="https://bodyfat.cc/de"/>
-    <xhtml:link
-               rel="alternate"
-               hreflang="en"
-               href="https://bodyfat.cc/en"/>
   </url>
   <url>
     <loc>https://bodyfat.cc/history</loc>
     <xhtml:link
                rel="alternate"
-               hreflang="x-default"
-               href="https://bodyfat.cc/history"/>
-    <xhtml:link
-               rel="alternate"
                hreflang="de"
                href="https://bodyfat.cc/de/history"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc/en/history"/>
+               href="https://bodyfat.cc/history"/>
   </url>
   <url>
     <loc>https://bodyfat.cc/de/history</loc>
     <xhtml:link
                rel="alternate"
-               hreflang="x-default"
-               href="https://bodyfat.cc/history"/>
-    <xhtml:link
-               rel="alternate"
                hreflang="de"
                href="https://bodyfat.cc/de/history"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc/en/history"/>
-  </url>
-  <url>
-    <loc>https://bodyfat.cc/en/history</loc>
-    <xhtml:link
-               rel="alternate"
-               hreflang="x-default"
                href="https://bodyfat.cc/history"/>
-    <xhtml:link
-               rel="alternate"
-               hreflang="de"
-               href="https://bodyfat.cc/de/history"/>
-    <xhtml:link
-               rel="alternate"
-               hreflang="en"
-               href="https://bodyfat.cc/en/history"/>
   </url>
 </urlset>
