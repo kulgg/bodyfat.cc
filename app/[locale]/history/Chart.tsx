@@ -15,6 +15,7 @@ import {
 import { useAtom } from "jotai";
 import { useMemo } from "react";
 import { Line } from "react-chartjs-2";
+import { useTranslations } from "next-intl";
 
 ChartJS.register(
   CategoryScale,
@@ -55,11 +56,8 @@ export const options = {
   },
 };
 
-export default function Chart({
-  dictionary,
-}: {
-  dictionary: LocaleDictionary;
-}) {
+export default function Chart() {
+  const t = useTranslations("general");
   const [history, setHistory] = useAtom(historyAtom);
 
   const validDataPoints = useMemo(
@@ -74,7 +72,7 @@ export default function Chart({
     labels: validDataPoints.map((x) => formatDate(x.created)),
     datasets: [
       {
-        label: dictionary.general.bodyfat,
+        label: t("bodyfat"),
         data: validDataPoints.map((x) => getBodyfat(x)),
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",

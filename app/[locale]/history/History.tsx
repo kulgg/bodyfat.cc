@@ -27,6 +27,7 @@ import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
 import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
+import { useTranslations } from "next-intl";
 
 const schema = z.array(
   z.object({
@@ -53,7 +54,8 @@ const schema = z.array(
   })
 );
 
-function History({ dictionary }: { dictionary: LocaleDictionary }) {
+function History() {
+  const t = useTranslations("general");
   const [history, setHistory] = useAtom(historyAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
   const { toast } = useToast();
@@ -91,9 +93,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
   return (
     <div id="history">
       <div className="flex justify-between my-4">
-        <h2 className="text-xl text-slate-100 font-semibold">
-          {dictionary.general.history}
-        </h2>
+        <h2 className="text-xl text-slate-100 font-semibold">{t("history")}</h2>
         <div className="mt-2 flex items-center gap-3">
           <TooltipProvider>
             <Tooltip>
@@ -129,31 +129,29 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
         </div>
       </div>
       <Table className="hidden md:block">
-        <TableCaption>{dictionary.general.measurements_history}</TableCaption>
+        <TableCaption>{t("measurements_history")}</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>{dictionary.general.date}</TableHead>
-            <TableHead className="whitespace-nowrap">
-              {dictionary.general.bodyfat}
-            </TableHead>
-            <TableHead>{dictionary.general.sex}</TableHead>
+            <TableHead>{t("date")}</TableHead>
+            <TableHead className="whitespace-nowrap">{t("bodyfat")}</TableHead>
+            <TableHead>{t("sex")}</TableHead>
             <TableHead>
-              {dictionary.general.height} ({isMetricSystem ? "cm" : "foot"})
+              {t("height")} ({isMetricSystem ? "cm" : "foot"})
             </TableHead>
             <TableHead>
-              {dictionary.general.weight} ({isMetricSystem ? "kg" : "lb"})
+              {t("weight")} ({isMetricSystem ? "kg" : "lb"})
             </TableHead>
             <TableHead>
-              {dictionary.general.neck} ({isMetricSystem ? "cm" : "in"})
+              {t("neck")} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead>
-              {dictionary.general.belly} ({isMetricSystem ? "cm" : "in"})
+              {t("belly")} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead>
-              {dictionary.general.waist} ({isMetricSystem ? "cm" : "in"})
+              {t("waist")} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead>
-              {dictionary.general.hip} ({isMetricSystem ? "cm" : "in"})
+              {t("hip")} ({isMetricSystem ? "cm" : "in"})
             </TableHead>
             <TableHead></TableHead>
           </TableRow>
@@ -252,7 +250,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
             </div>
             <div className="grid grid-cols-2 gap-2 gap-x-5 sm:gap-x-16 sm:px-8 sm:grid-cols-3">
               <div className="flex items-center justify-between gap-1">
-                <Badge variant={"outline"}>{dictionary.general.height}</Badge>
+                <Badge variant={"outline"}>{t("height")}</Badge>
                 <span className="font-mono text-slate-300">
                   {isMetricSystem
                     ? `${x.metric_measurement.height.toFixed(1)} cm`
@@ -262,7 +260,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                 </span>
               </div>
               <div className="flex items-center justify-between gap-1">
-                <Badge variant={"outline"}>{dictionary.general.weight}</Badge>
+                <Badge variant={"outline"}>{t("weight")}</Badge>
                 <span className="font-mono text-slate-300">
                   {isMetricSystem
                     ? `${x.metric_measurement.weight.toFixed(1)} kg`
@@ -270,7 +268,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
                 </span>
               </div>
               <div className="flex items-center justify-between gap-1">
-                <Badge variant={"outline"}>{dictionary.general.neck}</Badge>
+                <Badge variant={"outline"}>{t("neck")}</Badge>
                 <span className="font-mono text-slate-300">
                   {isMetricSystem
                     ? `${x.metric_measurement.neck.toFixed(1)} cm`
@@ -279,7 +277,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
               </div>
               {x.metric_measurement.belly ? (
                 <div className="flex items-center justify-between gap-1">
-                  <Badge variant={"outline"}>{dictionary.general.belly}</Badge>
+                  <Badge variant={"outline"}>{t("belly")}</Badge>
                   <span className="font-mono text-slate-300 text-sm">
                     {isMetricSystem
                       ? `${x.metric_measurement.belly.toFixed(1)} cm`
@@ -289,7 +287,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
               ) : null}
               {x.metric_measurement.waist ? (
                 <div className="flex items-center justify-between gap-1">
-                  <Badge variant={"outline"}>{dictionary.general.waist}</Badge>
+                  <Badge variant={"outline"}>{t("waist")}</Badge>
                   <span className="font-mono text-slate-300">
                     {isMetricSystem
                       ? `${x.metric_measurement.waist.toFixed(1)} cm`
@@ -299,7 +297,7 @@ function History({ dictionary }: { dictionary: LocaleDictionary }) {
               ) : null}
               {x.metric_measurement.hip ? (
                 <div className="flex items-center justify-between gap-1">
-                  <Badge variant={"outline"}>{dictionary.general.hip}</Badge>
+                  <Badge variant={"outline"}>{t("hip")}</Badge>
                   <span className="font-mono">
                     {isMetricSystem
                       ? `${x.metric_measurement.hip.toFixed(1)} cm`

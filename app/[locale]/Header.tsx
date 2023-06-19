@@ -4,7 +4,7 @@ import Link from "next/link";
 import { About } from "./About";
 import UnitSystemSwitch from "./UnitSystemSwitch";
 
-function Header({ dictionary }: { dictionary: LocaleDictionary }) {
+function Header() {
   return (
     <header className="h-12 md:h-16 border-b border-b-slate-800 flex flex-col justify-center max-w-4xl mx-auto px-4 lg:px-0">
       <div className="justify-between flex items-center">
@@ -14,8 +14,8 @@ function Header({ dictionary }: { dictionary: LocaleDictionary }) {
           </h1>
         </Link>
         <nav className="flex items-center gap-3 sm:gap-4">
-          <UnitSystemSwitch dictionary={dictionary} />
-          <About dictionary={dictionary} />
+          <UnitSystemSwitch />
+          <About />
           <a
             href="https://github.com/kulgg/bodyfat.cc"
             target="_blank"

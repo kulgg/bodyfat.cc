@@ -21,38 +21,39 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useTranslations } from "next-intl";
 
-export const getFormSchema = (dictionary: LocaleDictionary) =>
+export const getFormSchema = (tForms: any) =>
   z.object({
     height: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     weight: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     neck: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     waist: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     hip: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
   });
 
@@ -61,8 +62,10 @@ export default function FemaleMetricForm({
 }: {
   dictionary: LocaleDictionary;
 }) {
+  const tForms = useTranslations("forms");
+  const tGeneral = useTranslations("general");
   const router = useRouter();
-  const formSchema = getFormSchema(dictionary);
+  const formSchema = getFormSchema(tForms);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -104,7 +107,7 @@ export default function FemaleMetricForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/history");
     toast({
-      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${tForms("result_message")} ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -116,7 +119,7 @@ export default function FemaleMetricForm({
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.height} (cm)</FormLabel>
+              <FormLabel>{tGeneral("height")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="167"
@@ -135,7 +138,7 @@ export default function FemaleMetricForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.weight} (kg)</FormLabel>
+              <FormLabel>{tGeneral("weight")} (kg)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="63"
@@ -154,7 +157,7 @@ export default function FemaleMetricForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.neck} (cm)</FormLabel>
+              <FormLabel>{tGeneral("neck")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="34.2"
@@ -164,9 +167,7 @@ export default function FemaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.neck_description}
-              </FormDescription>
+              <FormDescription>{tForms("neck_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -176,7 +177,7 @@ export default function FemaleMetricForm({
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.waist} (cm)</FormLabel>
+              <FormLabel>{tGeneral("waist")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="80.5"
@@ -186,9 +187,7 @@ export default function FemaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.waist_description}
-              </FormDescription>
+              <FormDescription>{tForms("waist_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -198,7 +197,7 @@ export default function FemaleMetricForm({
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.hip} (cm)</FormLabel>
+              <FormLabel>{tGeneral("hip")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="95"
@@ -208,15 +207,13 @@ export default function FemaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.hip_description}
-              </FormDescription>
+              <FormDescription>{tForms("hip_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.forms.cta}
+          {tForms("cta")}
         </Button>
       </form>
     </Form>

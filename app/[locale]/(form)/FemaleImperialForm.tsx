@@ -21,50 +21,49 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useTranslations } from "next-intl";
 
-const formSchema = (dictionary: LocaleDictionary) =>
+const formSchema = (tForms: any) =>
   z.object({
     height_foot: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
-      .regex(/^\d+$/, { message: dictionary.forms.error_messages.number }),
+      .min(1, { message: tForms("error_messages.required") })
+      .regex(/^\d+$/, { message: tForms("error_messages.number") }),
     height_inches: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
-      .regex(/^\d+$/, { message: dictionary.forms.error_messages.number }),
+      .min(1, { message: tForms("error_messages.required") })
+      .regex(/^\d+$/, { message: tForms("error_messages.number") }),
     weight: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     neck: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     waist: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     hip: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
   });
 
-export default function FemaleImperialForm({
-  dictionary,
-}: {
-  dictionary: LocaleDictionary;
-}) {
+export default function FemaleImperialForm() {
+  const tForms = useTranslations("forms");
+  const tGeneral = useTranslations("general");
   const router = useRouter();
-  const schema = formSchema(dictionary);
+  const schema = formSchema(tForms);
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -108,7 +107,7 @@ export default function FemaleImperialForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/history");
     toast({
-      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${tForms("result_message")}" ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -121,9 +120,7 @@ export default function FemaleImperialForm({
             name="height_foot"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">
-                  {dictionary.general.height} (ft)
-                </FormLabel>
+                <FormLabel className="">{tGeneral("height")} (ft)</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="5"
@@ -160,7 +157,7 @@ export default function FemaleImperialForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.weight} (lb)</FormLabel>
+              <FormLabel>{tGeneral("weight")} (lb)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="139"
@@ -179,7 +176,7 @@ export default function FemaleImperialForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.neck} (in)</FormLabel>
+              <FormLabel>{tGeneral("neck")} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="13.5"
@@ -189,9 +186,7 @@ export default function FemaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.neck_description}
-              </FormDescription>
+              <FormDescription>{tForms("neck_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -201,7 +196,7 @@ export default function FemaleImperialForm({
           name="waist"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.waist} (in)</FormLabel>
+              <FormLabel>{tGeneral("waist")} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="31.7"
@@ -211,9 +206,7 @@ export default function FemaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.waist_description}
-              </FormDescription>
+              <FormDescription>{tForms("waist_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -223,7 +216,7 @@ export default function FemaleImperialForm({
           name="hip"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.hip} (in)</FormLabel>
+              <FormLabel>{tGeneral("hip")} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="37.4"
@@ -233,15 +226,13 @@ export default function FemaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.hip_description}
-              </FormDescription>
+              <FormDescription>{tForms("hip_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.forms.cta}
+          {tForms("cta")}
         </Button>
       </form>
     </Form>

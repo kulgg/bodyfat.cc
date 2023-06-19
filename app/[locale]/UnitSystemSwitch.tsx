@@ -6,8 +6,10 @@ import { unitSystemAtom } from "@/lib/atoms";
 import { LocaleDictionary } from "@/lib/model";
 import { capitalize } from "@/lib/utils";
 import { useAtom } from "jotai";
+import { useTranslations } from "next-intl";
 
-function UnitSystemSwitch({ dictionary }: { dictionary: LocaleDictionary }) {
+function UnitSystemSwitch() {
+  const t = useTranslations("general");
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
@@ -21,7 +23,7 @@ function UnitSystemSwitch({ dictionary }: { dictionary: LocaleDictionary }) {
         aria-label="Switch Unit System"
       />
       <Label htmlFor="unitSwitch" className="">
-        {capitalize(dictionary.general[unitSystem])}
+        {capitalize(t(unitSystem))}
       </Label>
     </div>
   );

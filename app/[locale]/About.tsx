@@ -11,8 +11,11 @@ import { unitSystemAtom } from "@/lib/atoms";
 import { LocaleDictionary } from "@/lib/model";
 import { useAtom } from "jotai";
 import { HelpCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-export function About({ dictionary }: { dictionary: LocaleDictionary }) {
+export function About() {
+  const tAbout = useTranslations("about");
+  const tGeneral = useTranslations("general");
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
   return (
@@ -22,26 +25,25 @@ export function About({ dictionary }: { dictionary: LocaleDictionary }) {
       </SheetTrigger>
       <SheetContent position="right" size="content" className="overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>{dictionary.about.formula.title}</SheetTitle>
+          <SheetTitle>{tAbout("formula.title")}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          {dictionary.about.formula.description}
+          {tAbout("formula.description")}
           <div className="my-4"></div>
           {unitSystem === "metric" ? (
             <div>
-              {dictionary.general.male}
+              {tGeneral("male")}
               <div className="italic text-sm text-amber-300 bg-slate-800">
-                {dictionary.general.bodyfat} = 86.01 * log10(
-                {dictionary.general.belly} - {dictionary.general.neck}) - 70.041
-                * log10(
-                {dictionary.general.height}) + 30.3
+                {tGeneral("bodyfat")} = 86.01 * log10(
+                {tGeneral("belly")} - {tGeneral("neck")}) - 70.041 * log10(
+                {tGeneral("height")}) + 30.3
               </div>
-              {dictionary.general.female}
+              {tGeneral("female")}
               <div className="italic text-sm text-amber-300 bg-slate-800">
-                {dictionary.general.bodyfat} = 163.205 * log10(
-                {dictionary.general.waist} + {dictionary.general.hip} -{" "}
-                {dictionary.general.neck}) - 97.684 * log10(
-                {dictionary.general.height}) - 104.912
+                {tGeneral("bodyfat")} = 163.205 * log10(
+                {tGeneral("waist")} + {tGeneral("hip")} - {tGeneral("neck")}) -
+                97.684 * log10(
+                {tGeneral("height")}) - 104.912
               </div>
             </div>
           ) : (
@@ -61,31 +63,31 @@ export function About({ dictionary }: { dictionary: LocaleDictionary }) {
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>{dictionary.about.privacy.title}</SheetTitle>
+          <SheetTitle>{tAbout("privacy.title")}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          {dictionary.about.privacy.description}
+          {tAbout("privacy.description")}
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>{dictionary.about.accuracy.title}</SheetTitle>
+          <SheetTitle>{tAbout("accuracy.title")}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          {dictionary.about.accuracy.description}
+          {tAbout("accuracy.description")}
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>{dictionary.about.free.title}</SheetTitle>
+          <SheetTitle>{tAbout("free.title")}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          {dictionary.about.free.description}
+          {tAbout("free.description")}
         </div>
         <div className="my-8"></div>
         <SheetHeader>
-          <SheetTitle>{dictionary.about.opensource.title}</SheetTitle>
+          <SheetTitle>{tAbout("opensource.title")}</SheetTitle>
         </SheetHeader>
         <div className="py-4 max-w-[600px] text-slate-300">
-          {dictionary.about.opensource.description}
+          {tAbout("opensource.description")}
         </div>
         <SheetFooter></SheetFooter>
       </SheetContent>

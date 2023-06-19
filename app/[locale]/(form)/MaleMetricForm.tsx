@@ -20,34 +20,35 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 
 import * as z from "zod";
 
-const getFormSchema = (dictionary: LocaleDictionary) =>
+const getFormSchema = (tForms: any) =>
   z.object({
     height: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     weight: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     neck: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     belly: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
   });
 
@@ -56,8 +57,10 @@ export default function MaleMetricForm({
 }: {
   dictionary: LocaleDictionary;
 }) {
+  const tForms = useTranslations("forms");
+  const tGeneral = useTranslations("general");
   const router = useRouter();
-  const schema = getFormSchema(dictionary);
+  const schema = getFormSchema(tForms);
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: { height: "", weight: "", neck: "", belly: "" },
@@ -92,7 +95,7 @@ export default function MaleMetricForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/history");
     toast({
-      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${tForms("result_message")} ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -104,7 +107,7 @@ export default function MaleMetricForm({
           name="height"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.height} (cm)</FormLabel>
+              <FormLabel>{tGeneral("height")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="180"
@@ -123,7 +126,7 @@ export default function MaleMetricForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.weight} (kg)</FormLabel>
+              <FormLabel>{tGeneral("weight")} (kg)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="78"
@@ -142,7 +145,7 @@ export default function MaleMetricForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.neck} (cm)</FormLabel>
+              <FormLabel>{tGeneral("neck")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="36"
@@ -152,9 +155,7 @@ export default function MaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.neck_description}
-              </FormDescription>
+              <FormDescription>{tForms("neck_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -164,7 +165,7 @@ export default function MaleMetricForm({
           name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.belly} (cm)</FormLabel>
+              <FormLabel>{tGeneral("belly")} (cm)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="82"
@@ -174,15 +175,13 @@ export default function MaleMetricForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.belly_description}
-              </FormDescription>
+              <FormDescription>{tForms("belly_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.forms.cta}
+          {tForms("cta")}
         </Button>
       </form>
     </Form>

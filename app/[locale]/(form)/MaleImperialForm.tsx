@@ -21,34 +21,35 @@ import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useTranslations } from "next-intl";
 
-const getFormSchema = (dictionary: LocaleDictionary) =>
+const getFormSchema = (tForms: any) =>
   z.object({
     height_foot: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
-      .regex(/^\d+$/, { message: dictionary.forms.error_messages.number }),
+      .min(1, { message: tForms("error_messages.required") })
+      .regex(/^\d+$/, { message: tForms("error_messages.number") }),
     height_inches: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
-      .regex(/^\d+$/, { message: dictionary.forms.error_messages.number }),
+      .min(1, { message: tForms("error_messages.required") })
+      .regex(/^\d+$/, { message: tForms("error_messages.number") }),
     weight: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     neck: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
     belly: z
       .string()
-      .min(1, { message: dictionary.forms.error_messages.required })
+      .min(1, { message: tForms("error_messages.required") })
       .regex(/^\d+\.?\d*$/, {
-        message: dictionary.forms.error_messages.number,
+        message: tForms("error_messages.number"),
       }),
   });
 
@@ -57,8 +58,10 @@ export default function MaleImperialForm({
 }: {
   dictionary: LocaleDictionary;
 }) {
+  const tForms = useTranslations("forms");
+  const tGeneral = useTranslations("general");
   const router = useRouter();
-  const formSchema = getFormSchema(dictionary);
+  const formSchema = getFormSchema(tForms);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -100,7 +103,7 @@ export default function MaleImperialForm({
     setHistory((prev) => [...prev, entry]);
     router.push("/history");
     toast({
-      title: `${dictionary.forms.result_message} ${getBodyfatResult(entry)}%!`,
+      title: `${tForms("result_message")} ${getBodyfatResult(entry)}%!`,
     });
   }
 
@@ -113,9 +116,7 @@ export default function MaleImperialForm({
             name="height_foot"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">
-                  {dictionary.general.height} (ft)
-                </FormLabel>
+                <FormLabel className="">{tGeneral("height")} (ft)</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="5"
@@ -152,7 +153,7 @@ export default function MaleImperialForm({
           name="weight"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.weight} (lb)</FormLabel>
+              <FormLabel>{tGeneral("weight")} (lb)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="172"
@@ -171,7 +172,7 @@ export default function MaleImperialForm({
           name="neck"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.neck} (in)</FormLabel>
+              <FormLabel>{tGeneral("neck")} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="14.2"
@@ -181,9 +182,7 @@ export default function MaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.neck_description}
-              </FormDescription>
+              <FormDescription>{tForms("neck_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -193,7 +192,7 @@ export default function MaleImperialForm({
           name="belly"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{dictionary.general.belly} (in)</FormLabel>
+              <FormLabel>{tGeneral("belly")} (in)</FormLabel>
               <FormControl>
                 <Input
                   placeholder="32.3"
@@ -203,15 +202,13 @@ export default function MaleImperialForm({
                   step="0.01"
                 />
               </FormControl>
-              <FormDescription>
-                {dictionary.forms.belly_description}
-              </FormDescription>
+              <FormDescription>{tForms("belly_description")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full">
-          {dictionary.forms.cta}
+          {tForms("cta")}
         </Button>
       </form>
     </Form>

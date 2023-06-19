@@ -8,8 +8,10 @@ import FemaleImperialForm from "./FemaleImperialForm";
 import FemaleMetricForm from "./FemaleMetricForm";
 import MaleImperialForm from "./MaleImperialForm";
 import MaleMetricForm from "./MaleMetricForm";
+import { useTranslations } from "next-intl";
 
-function Forms({ dictionary }: { dictionary: LocaleDictionary }) {
+function Forms() {
+  const t = useTranslations("general");
   const [sexSelection, setSexSelection] = useAtom(sexSelectionAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
 
@@ -25,7 +27,7 @@ function Forms({ dictionary }: { dictionary: LocaleDictionary }) {
           >
             <RadioGroupItem value="Male" id="Male" aria-label="Male" />
             <Label htmlFor="Male" className="cursor-pointer">
-              {dictionary.general.male}
+              {t("male")}
             </Label>
           </div>
           <div
@@ -34,20 +36,20 @@ function Forms({ dictionary }: { dictionary: LocaleDictionary }) {
           >
             <RadioGroupItem value="Female" id="Female" aria-label="Female" />
             <Label htmlFor="Female" className="cursor-pointer">
-              {dictionary.general.female}
+              {t("female")}
             </Label>
           </div>
         </RadioGroup>
         {sexSelection === "Male" ? (
           unitSystem === "metric" ? (
-            <MaleMetricForm dictionary={dictionary} />
+            <MaleMetricForm />
           ) : (
-            <MaleImperialForm dictionary={dictionary} />
+            <MaleImperialForm />
           )
         ) : unitSystem === "metric" ? (
-          <FemaleMetricForm dictionary={dictionary} />
+          <FemaleMetricForm />
         ) : (
-          <FemaleImperialForm dictionary={dictionary} />
+          <FemaleImperialForm />
         )}
       </div>
     </div>
