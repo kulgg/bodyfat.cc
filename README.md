@@ -22,6 +22,6 @@ bodyfat.cc helps you measure and log your body fat percentage.
 
 Currently this project can be expanded by
 
-- adding internationalization for your native language (see `/dictionaries`)
+- adding internationalization for your native language (see [`/messages`](https://github.com/kulgg/bodyfat.cc/tree/main/messages))
 - adding other calculators besides the US Navy method
 - designing a favicon

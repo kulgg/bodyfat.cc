@@ -52,11 +52,7 @@ const getFormSchema = (tForms: any) =>
       }),
   });
 
-export default function MaleMetricForm({
-  dictionary,
-}: {
-  dictionary: LocaleDictionary;
-}) {
+export default function MaleMetricForm() {
   const tForms = useTranslations("forms");
   const tGeneral = useTranslations("general");
   const router = useRouter();

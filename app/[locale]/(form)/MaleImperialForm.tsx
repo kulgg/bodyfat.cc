@@ -53,11 +53,7 @@ const getFormSchema = (tForms: any) =>
       }),
   });
 
-export default function MaleImperialForm({
-  dictionary,
-}: {
-  dictionary: LocaleDictionary;
-}) {
+export default function MaleImperialForm() {
   const tForms = useTranslations("forms");
   const tGeneral = useTranslations("general");
   const router = useRouter();
