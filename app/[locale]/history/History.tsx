@@ -20,14 +20,14 @@ import {
 } from "@/components/ui/tooltip";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
-import { Entry, LocaleDictionary, Sex } from "@/lib/model";
+import { Entry, Sex } from "@/lib/model";
 import { cn, formatDate, getBodyfatResult } from "@/lib/utils";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
-import { useTranslations } from "next-intl";
 
 const schema = z.array(
   z.object({

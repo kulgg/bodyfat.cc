@@ -13,15 +13,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom } from "@/lib/atoms";
-import { Entry, LocaleDictionary, Sex } from "@/lib/model";
+import { Entry, Sex } from "@/lib/model";
 import { footToCm, inchesToCm, poundsToKg } from "@/lib/units";
 import { getBodyfatResult } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useTranslations } from "next-intl";
 
 const getFormSchema = (tForms: any) =>
   z.object({

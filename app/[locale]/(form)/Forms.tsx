@@ -2,13 +2,12 @@
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { sexSelectionAtom, unitSystemAtom } from "@/lib/atoms";
-import { LocaleDictionary } from "@/lib/model";
 import { useAtom } from "jotai";
+import { useTranslations } from "next-intl";
 import FemaleImperialForm from "./FemaleImperialForm";
 import FemaleMetricForm from "./FemaleMetricForm";
 import MaleImperialForm from "./MaleImperialForm";
 import MaleMetricForm from "./MaleMetricForm";
-import { useTranslations } from "next-intl";
 
 function Forms() {
   const t = useTranslations("general");

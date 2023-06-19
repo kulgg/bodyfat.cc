@@ -3,7 +3,6 @@
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { unitSystemAtom } from "@/lib/atoms";
-import { LocaleDictionary } from "@/lib/model";
 import { capitalize } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";

@@ -1,9 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import Forms from "./(form)/Forms";
-import { useTranslations } from "next-intl";
 
 export default async function Home({
   params: { locale },
