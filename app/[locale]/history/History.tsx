@@ -25,7 +25,7 @@ import { cn, formatDate, getBodyfatResult } from "@/lib/utils";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useFormatter } from "next-intl";
 import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
 
@@ -56,6 +56,7 @@ const schema = z.array(
 
 function History() {
   const t = useTranslations("general");
+  const format = useFormatter();
   const [history, setHistory] = useAtom(historyAtom);
   const [unitSystem, setUnitSystem] = useAtom(unitSystemAtom);
   const { toast } = useToast();
@@ -160,7 +161,11 @@ function History() {
           {sortedHistory.map((x, i) => (
             <TableRow key={i}>
               <TableCell className="whitespace-nowrap text-slate-400">
-                {formatDate(x.created)}
+                {format.dateTime(new Date(x.created), {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                })}
               </TableCell>
               <TableCell>
                 <Badge>{getBodyfatResult(x)}</Badge>
@@ -235,7 +240,11 @@ function History() {
           >
             <div className="flex justify-between items-center mb-2">
               <div className="text-slate-400 text-xs">
-                {formatDate(x.created)}
+                {format.dateTime(new Date(x.created), {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                })}
               </div>
               <Trash2
                 className="w-4 h-4 text-slate-100 cursor-pointer"
