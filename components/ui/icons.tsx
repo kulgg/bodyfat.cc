@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  ArrowRightFromLine,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -9,6 +10,7 @@ import {
   CreditCard,
   File,
   FileText,
+  FileUp,
   HelpCircle,
   Image,
   Laptop,
@@ -25,10 +27,6 @@ import {
   User,
   X,
   type Icon as LucideIcon,
-  Download,
-  Upload,
-  FileUp,
-  ArrowRightFromLine,
 } from "lucide-react";
 
 export type Icon = LucideIcon;

@@ -21,11 +21,11 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { historyAtom, unitSystemAtom } from "@/lib/atoms";
 import { Entry, Sex } from "@/lib/model";
-import { cn, formatDate, getBodyfatResult } from "@/lib/utils";
+import { cn, getBodyfatResult } from "@/lib/utils";
 import { saveAs } from "file-saver";
 import { useAtom } from "jotai";
 import { Trash2 } from "lucide-react";
-import { useTranslations, useFormatter } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { ChangeEvent, useMemo } from "react";
 import { z } from "zod";
 
