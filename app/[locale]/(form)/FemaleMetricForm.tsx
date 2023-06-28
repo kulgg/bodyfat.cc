@@ -28,31 +28,31 @@ export const getFormSchema = (tForms: any) =>
     height: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
     weight: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
     neck: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
     waist: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
     hip: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
   });

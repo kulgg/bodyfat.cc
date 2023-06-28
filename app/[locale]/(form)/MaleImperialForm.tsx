@@ -36,19 +36,19 @@ const getFormSchema = (tForms: any) =>
     weight: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
     neck: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
     belly: z
       .string()
       .min(1, { message: tForms("error_messages.required") })
-      .regex(/^\d+\.?\d*$/, {
+      .regex(/^\d+[,\.]?\d*$/, {
         message: tForms("error_messages.number"),
       }),
   });
