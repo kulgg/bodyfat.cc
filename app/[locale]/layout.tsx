@@ -77,7 +77,7 @@ export default async function RootLayout({
       <Script
         defer
         data-domain="bodyfat.cc"
-        src="https://analytics.kul.gg/js/script.js"
+        src="https://analytics.kul.cx/js/script.js"
       />
     </html>
   );
