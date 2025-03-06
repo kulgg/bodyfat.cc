@@ -9,16 +9,16 @@ function Header() {
       <div className="justify-between flex items-center">
         <Link href={"/"}>
           <h1 className="text-2xl text-[26px] md:text-3xl font-display">
-            bodyfat.cc
+            bodyfat
           </h1>
         </Link>
         <nav className="flex items-center gap-3 sm:gap-4">
           <UnitSystemSwitch />
           <About />
           <a
-            href="https://github.com/kulgg/bodyfat.cc"
+            href="https://github.com/kulgg/bodyfat"
             target="_blank"
-            aria-label="bodyfat.cc GitHub"
+            aria-label="bodyfat GitHub"
           >
             <Icons.gitHub className="w-5 h-5" />
           </a>

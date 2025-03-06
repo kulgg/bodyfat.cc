@@ -27,8 +27,8 @@ export async function generateMetadata({
   if (locale === "de") {
     return {
       title: {
-        template: "%s | bodyfat.cc",
-        default: `Körperfettanteil berechnen | bodyfat.cc`,
+        template: "%s | bodyfat",
+        default: `Körperfettanteil berechnen | bodyfat`,
       },
       description:
         "Nutzen Sie unser Tool um einfach und präzise Ihren Körperfettanteil zu berechnen. Keine Registrierung nötig. 100 % privat. Alle Daten bleiben auf Ihrem Gerät.",
@@ -37,8 +37,8 @@ export async function generateMetadata({
 
   return {
     title: {
-      template: "%s | bodyfat.cc",
-      default: `Army body fat calculator | bodyfat.cc`,
+      template: "%s | bodyfat",
+      default: `Army body fat calculator | bodyfat`,
     },
     description:
       "Use our reliable army body fat calculator to determine your body fat percentage for free. No registration needed. 100% private . All data stays on your device.",
@@ -76,7 +76,7 @@ export default async function RootLayout({
       </body>
       <Script
         defer
-        data-domain="bodyfat.cc"
+        data-domain="bodyfat.kul.cx"
         src="https://analytics.kul.cx/js/script.js"
       />
     </html>

@@ -1,6 +1,6 @@
-<h1 align="center"><a href="https://bodyfat.cc">bodyfat.cc</a></h1>
+<h1 align="center"><a href="https://bodyfat.kul.cx">bodyfat</a></h1>
 
-bodyfat.cc helps you measure and log your body fat percentage.
+bodyfat helps you measure and log your body fat percentage.
 
 ## Features
 
@@ -22,6 +22,6 @@ bodyfat.cc helps you measure and log your body fat percentage.
 
 Currently this project can be expanded by
 
-- adding internationalization for your native language (see [`/messages`](https://github.com/kulgg/bodyfat.cc/tree/main/messages))
+- adding internationalization for your native language (see [`/messages`](https://github.com/kulgg/bodyfat/tree/main/messages))
 - adding other calculators besides the US Navy method
 - designing a favicon

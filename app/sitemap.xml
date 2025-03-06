@@ -7,47 +7,47 @@
     http://www.w3.org/1999/xhtml
     http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
   <url>
-    <loc>https://bodyfat.cc</loc>
+    <loc>https://bodyfat.kul.cx</loc>
     <xhtml:link
                rel="alternate"
                hreflang="de"
-               href="https://bodyfat.cc/de"/>
+               href="https://bodyfat.kul.cx/de"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc"/>
+               href="https://bodyfat.kul.cx"/>
   </url>
   <url>
-    <loc>https://bodyfat.cc/de</loc>
+    <loc>https://bodyfat.kul.cx/de</loc>
     <xhtml:link
                rel="alternate"
                hreflang="de"
-               href="https://bodyfat.cc/de"/>
+               href="https://bodyfat.kul.cx/de"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc"/>
+               href="https://bodyfat.kul.cx"/>
   </url>
   <url>
-    <loc>https://bodyfat.cc/history</loc>
+    <loc>https://bodyfat.kul.cx/history</loc>
     <xhtml:link
                rel="alternate"
                hreflang="de"
-               href="https://bodyfat.cc/de/history"/>
+               href="https://bodyfat.kul.cx/de/history"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc/history"/>
+               href="https://bodyfat.kul.cx/history"/>
   </url>
   <url>
-    <loc>https://bodyfat.cc/de/history</loc>
+    <loc>https://bodyfat.kul.cx/de/history</loc>
     <xhtml:link
                rel="alternate"
                hreflang="de"
-               href="https://bodyfat.cc/de/history"/>
+               href="https://bodyfat.kul.cx/de/history"/>
     <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="https://bodyfat.cc/history"/>
+               href="https://bodyfat.kul.cx/history"/>
   </url>
 </urlset>
